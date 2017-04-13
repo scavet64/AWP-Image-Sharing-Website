@@ -10,7 +10,7 @@ drop table `photo_comments`;
 CREATE TABLE `photo_users` (
   `user_id` int(6) NOT NULL auto_increment,
   `joindate` date,
-  `username` varchar(20),
+  `username` varchar(300),
   `password` varchar(40),     # save with SHA()!  (see below)
   `profile_pic_id` int(8), # user doesn't have to pick one
   PRIMARY KEY  (`user_id`)
