@@ -15,7 +15,8 @@ CREATE TABLE `photo_users` (
   `lastlogin` DATETIME NOT NULL,
   `username` varchar(50) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `password` varchar(40) NOT NULL,     # save with SHA()!  (see below)
+  `password` varchar(255) NOT NULL,
+  `ip` varchar(255) NOT NULL,
   `profile_pic_id` int(8), # user doesn't have to pick one
   `activated` ENUM('0','1') NOT NULL DEFAULT '0',
   PRIMARY KEY (`user_id`),
