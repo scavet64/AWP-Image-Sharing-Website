@@ -9,9 +9,9 @@ if(isset($_SESSION["username"])){
 <?php
 // Ajax calls this NAME CHECK code to execute
 if(isset($_POST["usernamecheck"])){
-	include_once("php_includes/db_conx.php");
+	include_once("php_includes/db_connects.php");
 	$username = preg_replace('#[^a-z0-9]#i', '', $_POST['usernamecheck']);
-	$sql = "SELECT id FROM users WHERE username='$username' LIMIT 1";
+	$sql = "SELECT user_id FROM photo_users WHERE username='$username' LIMIT 1";
     $query = mysqli_query($db_conx, $sql); 
     $uname_check = mysqli_num_rows($query); //either 0 or 1. 1 = failed because we found a record with that username
     if (strlen($username) < 3 || strlen($username) > 16) {
@@ -34,7 +34,7 @@ if(isset($_POST["usernamecheck"])){
 // Ajax calls this REGISTRATION code to execute
 if(isset($_POST["u"])){
 	// CONNECT TO THE DATABASE
-	include_once("php_includes/db_conx.php");
+	include_once("php_includes/db_connects.php");
 	// GATHER THE POSTED DATA INTO LOCAL VARIABLES
 	$u = preg_replace('#[^a-z0-9]#i', '', $_POST['u']);
 	$e = mysqli_real_escape_string($db_conx, $_POST['e']);
@@ -44,11 +44,11 @@ if(isset($_POST["u"])){
 	// GET USER IP ADDRESS
     $ip = preg_replace('#[^0-9.]#', '', getenv('REMOTE_ADDR'));
 	// DUPLICATE DATA CHECKS FOR USERNAME AND EMAIL
-	$sql = "SELECT id FROM users WHERE username='$u' LIMIT 1";
+	$sql = "SELECT user_id FROM photo_users WHERE username='$username' LIMIT 1";
     $query = mysqli_query($db_conx, $sql); 
 	$u_check = mysqli_num_rows($query);
 	// -------------------------------------------
-	$sql = "SELECT id FROM users WHERE email='$e' LIMIT 1";
+	$sql = "SELECT user_id FROM photo_users WHERE email='$e' LIMIT 1";
     $query = mysqli_query($db_conx, $sql); 
 	$e_check = mysqli_num_rows($query);
 	// FORM DATA ERROR HANDLING
@@ -71,12 +71,13 @@ if(isset($_POST["u"])){
 	// END FORM DATA ERROR HANDLING
 	    // Begin Insertion of data into the database
 		// Hash the password and apply your own mysterious unique salt
-		$cryptpass = crypt($p); //always will be 34 characters
-		include_once ("php_includes/randStrGen.php");
-		$p_hash = randStrGen(20)."$cryptpass".randStrGen(20);   //surround our cryptic password with random characters
+		$p_hash = sha1($p);
+		// $cryptpass = crypt($p); //always will be 34 characters
+		// include_once ("php_includes/randStrGen.php");
+		// $p_hash = randStrGen(20)."$cryptpass".randStrGen(20);   //surround our cryptic password with random characters
 		// Add user info into the database table for the main site table
-		$sql = "INSERT INTO users (username, email, password, ip, joindate, lastlogin)       
-		        VALUES('$u','$e','$p_hash','$ip',now(),now())";
+		$sql = "INSERT INTO photo_users (username, email, password, ip, joindate, lastlogin, activated)       
+		        VALUES('$u','$e','$p_hash','$ip',now(),now(),'1')";
 		$query = mysqli_query($db_conx, $sql); 
 		$uid = mysqli_insert_id($db_conx);
 // 		// Create directory(folder) to hold each user's files(pics, MP3s, etc.)
@@ -86,8 +87,6 @@ if(isset($_POST["u"])){
 		// Email the user their activation link
 		$websiteURL = "https://website-vstro24.c9users.io";
 		$mySiteName = "Super Cool Image Site";
-		
-		
 		
 		$to = "$e";							 
 		$from = "vstro24@gmail.com";
@@ -99,10 +98,15 @@ if(isset($_POST["u"])){
 		<a href="'.$websiteURL.'/activation.php?id='.$uid.'&u='.$u.'&e='.$e.'&p='.$p_hash.'">Click here to activate your account now</a><br />
 		<br />Login after successful activation using your:<br />* E-mail Address: <b>'.$e.'</b></div></body></html>';
 		$headers = "From: $from\n";
-        $headers .= "MIME-Version: 1.0\n";
-        $headers .= "Content-type: text/html; charset=iso-8859-1\n";
-		mail($to, $subject, $message, $headers);
-		echo "signup_success";
+    $headers .= "MIME-Version: 1.0\n";
+    $headers .= "Content-type: text/html; charset=iso-8859-1\n";
+    
+		if(mail($to, $subject, $message, $headers)){
+			echo "signup_success";
+		} else {
+			echo "Email failed: Activating for testing reasons";
+			header($websiteURL.'/activation.php?id='.$uid.'&u='.$u.'&e='.$e.'&p='.$p_hash);
+		}
 		exit();
 	}
 	exit();
