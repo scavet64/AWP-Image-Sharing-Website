@@ -11,17 +11,17 @@
     <!-- Button to open the modal login form -->
     <button onclick="document.getElementById('id01').style.display='block'">Login</button>
 
-    <!-- The Modal -->
+    <!-- The Modal (contains the login form)-->
     <div id="id01" class="modal">
         <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
 
         <!-- Modal Content -->
-        <form class="modal-content animate" action="/action_page.php">
+        <form class="modal-content-login animate" action="/action_page.php">
             <div class="imgcontainer">
                 <img src="img_avatar2.png" alt="Avatar" class="avatar">
             </div>
 
-            <div class="container">
+            <div class="container-login">
                 <label><b>Username</b></label>
                 <input type="text" placeholder="Enter Username" name="uname" required>
 
@@ -32,7 +32,7 @@
                 <input type="checkbox" checked="checked"> Remember me
             </div>
 
-            <div class="container" style="background-color:#f1f1f1">
+            <div class="container-login" style="background-color:#f1f1f1">
                 <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
                 <span class="psw">Forgot <a href="#">password?</a></span>
             </div>
@@ -58,7 +58,7 @@
                 <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
 
                 <div class="clearfix">
-                    <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
+                    <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn-signup">Cancel</button>
                     <button type="submit" class="signupbtn">Sign Up</button>
                 </div>
             </div>
@@ -69,21 +69,27 @@
     </form>
     <form action="uploadfile.php" method="post" enctype="multipart/form-data">
         Select image to upload:
-    <input type="file" name="fileToUpload" id="fileToUpload">
-    <input type="submit" value="Upload Image" name="submit">
-</form>
+        <input type="file" name="fileToUpload" id="fileToUpload">
+        <input type="submit" value="Upload Image" name="submit">
+    </form>
+    <button onclick="test()" >dasdasdasd</button>
+    <p id="testthing">test</p>
 </body>
 
 <script>
-    // Get the modal
-    var modal = document.getElementById('id01');
+    // Get the modals
+    var signupModal = document.getElementById('id01');
+    var loginModal = document.getElementById('id02');
 
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
+        if (event.target == signupModal || event.target == loginModal) {
+            signupModal.style.display = "none";
+            loginModal.style.display = "none";
         }
     }
 </script>
+<script src="http://code.jquery.com/jquery-1.9.0.min.js"> </script>
+<script src="js\script.js"> </script>
 
 </html>

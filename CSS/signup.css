@@ -26,9 +26,9 @@ button {
 }
 
 /* Float cancel and signup buttons and add an equal width */
-.cancelbtn,.signupbtn {
-    float: left;
+.cancelbtn-signup,.signupbtn {
     width: 50%;
+    float:left;
 }
 
 /* Add padding to container elements */
