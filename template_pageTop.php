@@ -1,8 +1,8 @@
 <div id="pageTop">
   <div id="pageTopWrap">
     <div id="pageTopLogo">
-      <a href="http://www.webintersect.com">
-        <img src="images/logo.jpg" style="width:60px;height:60px;margin:15px;" alt="logo" title="Web Intersect 2.0">
+      <a href="https://awp-scavet64.c9users.io">
+        <img src="images/logo.jpg" style="width:60px;height:60px;margin:15px;" alt="logo" title="AWP">
       </a>
     </div>
     <div id="pageTopRest">
