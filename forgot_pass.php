@@ -20,19 +20,20 @@ if(isset($_POST["e"])){
 		$emailcut = substr($e, 0, 4);
 		$randNum = rand(10000,99999);
 		$tempPass = "$emailcut$randNum";
-		$hashTempPass = md5($tempPass);
+		$hashTempPass = sha1($tempPass);
 		$sql = "UPDATE photo_users SET temp_pass='$hashTempPass' WHERE username='$u' LIMIT 1";
 	    $query = mysqli_query($db_conx, $sql);
+
+		$websiteURL = "http://elvis.rowan.edu/~scavet64/awp/awp/";
+		$mySiteName = "Super Cool Image Site";
+		$UrlEncodedEmail = urlencode($e);
+
 		$to = "$e";
 		$from = "scavet64@students.rowan.edu";
 		$headers ="From: $from\n";
 		$headers .= "MIME-Version: 1.0\n";
 		$headers .= "Content-type: text/html; charset=iso-8859-1 \n";
-		$subject ="yoursite Temporary Password";
-		
-		$websiteURL = "http://elvis.rowan.edu/~scavet64/awp/awp/";
-		$mySiteName = "Super Cool Image Site";
-		$UrlEncodedEmail = urlencode($e);
+		$subject = $mySiteName." Temporary Password";
 
 		$forgotPassURL = $websiteURL.'forgot_pass.php?u='.$u.'&p='.$hashTempPass;
 		
@@ -72,11 +73,16 @@ if(isset($_GET['u']) && isset($_GET['p'])){
 	} else {
 		$row = mysqli_fetch_row($query);
 		$id = $row[0];
-		$sql = "UPDATE photo_users SET password='$temppasshash' WHERE id='user_id' AND username='$u' LIMIT 1";
+		$sql = "UPDATE photo_users SET password='$temppasshash' WHERE user_id='$id' AND username='$u' LIMIT 1";
+		echo $sql.'\n';
 	    $query = mysqli_query($db_conx, $sql);
+	    echo $query.'\n';
 		$sql = "UPDATE photo_users SET temp_pass='' WHERE username='$u' LIMIT 1";
+		echo $sql.'\n';
 	    $query = mysqli_query($db_conx, $sql);
-	    header("location: login.php");
+	    echo $query.'\n';
+
+	    //header("location: login.php");
         exit();
     }
 }

@@ -8,7 +8,9 @@
     <div id="pageTopRest">
       <div id="menu1">
         <div>
-          <a href="#">Sign Up / Log In</a>
+          <a href="signup.php">Sign Up</a>
+          <a href="login.php">Log In</a>
+          <a href="logout.php">Log out</a>
         </div>
       </div>
       <div id="menu2">

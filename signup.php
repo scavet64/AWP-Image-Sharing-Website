@@ -2,7 +2,7 @@
 session_start();
 // If user is logged in, header them away
 if(isset($_SESSION["username"])){
-	header("location: message.php?msg=NO to that weenis");
+	header("location: message.php?msg=already signed up and logged in");
     exit();
 }
 ?>

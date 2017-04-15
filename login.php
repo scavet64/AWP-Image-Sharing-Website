@@ -115,7 +115,7 @@ function login(){
     <br /><br />
     <button id="loginbtn" onclick="login()">Log In</button> 
     <p id="status"></p>
-    <a href="#">Forgot Your Password?</a>
+    <a href="forgot_pass.php">Forgot Your Password?</a>
   </form>
   <!-- LOGIN FORM -->
 </div>
