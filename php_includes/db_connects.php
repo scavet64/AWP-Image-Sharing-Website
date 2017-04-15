@@ -8,7 +8,7 @@ if(mysqli_connect_errno()){
 }
 
 // Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if ($db_conx->connect_error) {
+    die("Connection failed: " . $db_conx->connect_error);
 } 
 ?>

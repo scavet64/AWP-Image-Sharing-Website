@@ -39,8 +39,6 @@ if(isset($_POST["u"])){
 	$u = preg_replace('#[^a-z0-9]#i', '', $_POST['u']);
 	$e = mysqli_real_escape_string($db_conx, $_POST['e']);
 	$p = $_POST['p'];
-	$g = preg_replace('#[^a-z]#', '', $_POST['g']);
-	$c = preg_replace('#[^a-z ]#i', '', $_POST['c']);
 	// GET USER IP ADDRESS
     $ip = preg_replace('#[^0-9.]#', '', getenv('REMOTE_ADDR'));
 	// DUPLICATE DATA CHECKS FOR USERNAME AND EMAIL
@@ -85,17 +83,20 @@ if(isset($_POST["u"])){
 // 			mkdir("user/$u", 0755);
 // 		}
 		// Email the user their activation link
-		$websiteURL = "https://website-vstro24.c9users.io";
+		$websiteURL = "http://elvis.rowan.edu/~scavet64/awp/awp/";
 		$mySiteName = "Super Cool Image Site";
+		$UrlEncodedEmail = urlencode($e);
+
+		$activationURL = $websiteURL.'activation.php?id='.$uid.'&u='.$u.'&e='.$UrlEncodedEmail.'&p='.$p_hash;
 		
 		$to = "$e";							 
 		$from = "scavet64@students.rowan.edu";
 		$subject = $mySiteName.' Account Activation';
 		$message = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>'.$mySiteName.' Message</title></head><body style="margin:0px; font-family:Tahoma, 
 		Geneva, sans-serif;"><div style="padding:10px; background:#333; font-size:24px; color:#CCC;"><a href="'.$websiteURL.'">
-		<img src="'.$websiteURL.'/images/logo.png" width="36" height="30" alt="'.$mySiteName.'" style="border:none; float:left;"></a>'.$mySiteName.' Account Activation</div>
+		<img src="'.$websiteURL.'/images/logo.jpg" width="36" height="30" alt="'.$mySiteName.'" style="border:none; float:left;"></a>'.$mySiteName.' Account Activation</div>
 		<div style="padding:24px; font-size:17px;">Hello '.$u.',<br /><br />Click the link below to activate your account when ready:<br /><br />
-		<a href="'.$websiteURL.'/activation.php?id='.$uid.'&u='.$u.'&e='.$e.'&p='.$p_hash.'">Click here to activate your account now</a><br />
+		<a href="'.$activationURL.'">Click here to activate your account now</a><br />
 		<br />Login after successful activation using your:<br />* E-mail Address: <b>'.$e.'</b></div></body></html>';
 		$headers = "From: $from\n";
     $headers .= "MIME-Version: 1.0\n";
