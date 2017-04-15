@@ -44,7 +44,7 @@ if(isset($_POST["u"])){
 	// GET USER IP ADDRESS
     $ip = preg_replace('#[^0-9.]#', '', getenv('REMOTE_ADDR'));
 	// DUPLICATE DATA CHECKS FOR USERNAME AND EMAIL
-	$sql = "SELECT user_id FROM photo_users WHERE username='$username' LIMIT 1";
+	$sql = "SELECT user_id FROM photo_users WHERE username='$u' LIMIT 1";
     $query = mysqli_query($db_conx, $sql); 
 	$u_check = mysqli_num_rows($query);
 	// -------------------------------------------
@@ -89,7 +89,7 @@ if(isset($_POST["u"])){
 		$mySiteName = "Super Cool Image Site";
 		
 		$to = "$e";							 
-		$from = "vstro24@gmail.com";
+		$from = "scavet64@students.rowan.edu";
 		$subject = $mySiteName.' Account Activation';
 		$message = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>'.$mySiteName.' Message</title></head><body style="margin:0px; font-family:Tahoma, 
 		Geneva, sans-serif;"><div style="padding:10px; background:#333; font-size:24px; color:#CCC;"><a href="'.$websiteURL.'">
