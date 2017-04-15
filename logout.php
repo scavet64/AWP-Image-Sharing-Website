@@ -14,7 +14,7 @@ session_destroy();
 if(isset($_SESSION['username'])){
 	header("location: message.php?msg=Error:_Logout_Failed");
 } else {
-	header("location: https://awp-scavet64.c9users.io");
+	header("location: index.php");
 	exit();
 } 
 ?>
