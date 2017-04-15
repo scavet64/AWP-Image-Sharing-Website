@@ -19,6 +19,7 @@ CREATE TABLE `photo_users` (
   `ip` varchar(255) NOT NULL,
   `profile_pic_id` int(8), # user doesn't have to pick one
   `activated` ENUM('0','1') NOT NULL DEFAULT '0',
+  `temp_pass` varchar(255),
   PRIMARY KEY (`user_id`),
   CONSTRAINT userexists UNIQUE KEY (username, email)
 ) engine=innodb;
@@ -56,10 +57,10 @@ CREATE TABLE `photo_users` (
 
 CREATE TABLE `photo_files` (
   `photo_id` int(8) NOT NULL auto_increment,
-  `uploaddate` date,
-  `uploadname` varchar(128),
+  `uploaddate` date NOT NULL,
+  `uploadname` varchar(128) NOT NULL,
   `caption` varchar(128),      # check the caption for special chars
-  `filelocation` varchar(256), # probably want to remove special chars
+  `filelocation` varchar(256) NOT NULL, # probably want to remove special chars
   PRIMARY KEY  (`photo_id`)
 ) engine=innodb;
 
