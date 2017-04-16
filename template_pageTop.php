@@ -23,12 +23,12 @@ if($user_ok == true) {
 <div id="pageTop">
   <div id="pageTopWrap">
     <div id="pageTopLogo">
-      <a href="https://awp-scavet64.c9users.io">
-        <img src="images/logo.jpg" style="width:60px;height:60px;margin:15px;" alt="logo" title="AWP">
+      <a href="index.php">
+        <img src="images/logo.jpg" style="width:60px;height:60px;margin-top: -20px;" alt="logo" title="AWP">
       </a>
     </div>
     <div id="pageTopRest">
-      <div id="menu1">
+      <div id="menu1" class="TopMenu" style="float: right">
         <div>
           <?php echo $loginLink; ?>
         </div>

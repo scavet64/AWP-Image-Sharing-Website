@@ -3,35 +3,33 @@ body { margin: 0px; font-family: Tahoma, Geneva, sans-serif; font-size: 14px; }
 #pageTop {
 	/*background:url(headerSliver.png) repeat-x;*/
 	background-color: #3A506B;
-	height: 90px;
+	height: 60px;
 	font-family: 'Roboto Condensed', sans-serif;
+	padding: 20px;
 }
 #pageTop > #pageTopWrap {
 	width: 1000px;
 	margin: 0px auto;
-	height: 90px;
+	height: 60px;
 }
 #pageTop > #pageTopWrap > #pageTopLogo {
 	float: left;
-	height: 90px;
+	height: 60px;
 	width: 108px;
 }
 #logoimage {
 	height: 60px;
 	width: 60px;
-	margin-top: -60px;
 }
 #pageTop > #pageTopWrap > #pageTopRest {
 	float: left;
-	height: 90px;
+	height: 60px;
 	width: 892px;
 }
 #pageTop > #pageTopWrap > #pageTopRest > #menu1 {
 	height: 44px;
 }
 #pageTop > #pageTopWrap > #pageTopRest > #menu1 > div {
-	margin-top: 8px;
-	padding: 4px;
 	text-align:right;
 }
 #pageTop > #pageTopWrap > #pageTopRest > #menu1 > div > a {
@@ -39,14 +37,12 @@ body { margin: 0px; font-family: Tahoma, Geneva, sans-serif; font-size: 14px; }
 	text-decoration: none;
 }
 #pageTop > #pageTopWrap > #pageTopRest > #menu1 > div > a:hover {
-	color: #C0E73D;
+	color: #6FFFE9;
 }
 #pageTop > #pageTopWrap > #pageTopRest > #menu2 {
 	height: 44px;
 }
 #pageTop > #pageTopWrap > #pageTopRest > #menu2 > div {
-	margin-top: 2px;
-	padding: 4px;
 }
 #pageTop > #pageTopWrap > #pageTopRest > #menu2 > div > a {
 	display: block;
@@ -56,7 +52,7 @@ body { margin: 0px; font-family: Tahoma, Geneva, sans-serif; font-size: 14px; }
 	margin: 0px 16px;
 }
 #pageTop > #pageTopWrap > #pageTopRest > #menu2 > div > a:hover {
-	color: #C0E73D;
+	color: #6FFFE9;
 }
 /* PAGE MIDDLE */
 #pageMiddle{

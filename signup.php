@@ -213,7 +213,7 @@ window.onload = addEvents; */
 <div id="pageMiddle">
 	<div class="formWrapper signupFormWrapper">
 		<form name="signupform" id="signupform" onsubmit="return false;">
-			<h3>Sign Up Here</h3>
+			<h3>Sign Up</h3>
 			<div>Username: </div>
 			<input id="username" class="form-control inputForm" type="text" onblur="checkusername()" onkeyup="restrict('username')" maxlength="16">
 			<span id="unamestatus" class="unamestatus"></span>
