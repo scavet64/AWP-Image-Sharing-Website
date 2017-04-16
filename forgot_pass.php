@@ -82,7 +82,7 @@ if(isset($_GET['u']) && isset($_GET['p'])){
 	    $query = mysqli_query($db_conx, $sql);
 	    echo $query.'\n';
 
-	    //header("location: login.php");
+	    header("location: login.php");
         exit();
     }
 }
@@ -93,24 +93,10 @@ if(isset($_GET['u']) && isset($_GET['p'])){
 <meta charset="UTF-8">
 <title>Forgot Password</title>
 <link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="style/style.css">
-<style type="text/css">
-#forgotpassform{
-	margin-top:24px;	
-}
-#forgotpassform > div {
-	margin-top: 12px;	
-}
-#forgotpassform > input {
-	width: 250px;
-	padding: 3px;
-	background: #F3F9DD;
-}
-#forgotpassbtn {
-	font-size:15px;
-	padding: 10px;
-}
-</style>
 <script src="js/main.js"></script>
 <script src="js/ajax.js"></script>
 <script>
@@ -141,15 +127,15 @@ function forgotpass(){
 }
 </script>
 </head>
-<body>
+<body class="mainBody">
 <?php include_once("template_pageTop.php"); ?>
 <div id="pageMiddle">
-  <h3>Generate a temorary log in password</h3>
+<div class="formWrapper loginFormWrapper">
+  <h3 style="margin-bottom: 30px;">Generate a temporary login password</h3>
   <form id="forgotpassform" onsubmit="return false;">
     <div>Step 1: Enter Your Email Address</div>
-    <input id="email" type="text" onfocus="_('status').innerHTML='';" maxlength="255">
-    <br /><br />
-    <button id="forgotpassbtn" onclick="forgotpass()">Generate Temporary Log In Password</button> 
+    <input id="email" class="form-control inputForm" type="text" onfocus="_('status').innerHTML='';" maxlength="255">
+    <button id="forgotpassbtn" class="formButton" onclick="forgotpass()">Generate Temporary Log In Password</button> 
     <p id="status"></p>
   </form>
 </div>

@@ -41,17 +41,22 @@ while ($row = mysqli_fetch_array($user_query, MYSQLI_ASSOC)) {
 <meta charset="UTF-8">
 <title><?php echo $u; ?></title>
 <link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="style/style.css">
 <script src="js/main.js"></script>
 <script src="js/ajax.js"></script>
 </head>
-<body>
+<body class="mainBody">
 <?php include_once("template_pageTop.php"); ?>
 <div id="pageMiddle">
-  <h3><?php echo $u; ?></h3>
-  <p>Is the viewer the page owner, logged in and verified? <b><?php echo $isOwner; ?></b></p>
-  <p>Join Date: <?php echo $joindate; ?></p>
-  <p>Last Session: <?php echo $lastsession; ?></p>
+	<div id="userWrapper" class="userWrapper">
+		<h3><?php echo $u; ?></h3>
+		<p>Is the viewer the page owner, logged in and verified? <b><?php echo $isOwner; ?></b></p>
+		<p>Join Date: <?php echo $joindate; ?></p>
+		<p>Last Session: <?php echo $lastsession; ?></p>
+	</div>
 </div>
 <?php include_once("template_pageBottom.php"); ?>
 </body>

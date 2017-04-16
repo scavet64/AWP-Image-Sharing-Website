@@ -74,6 +74,7 @@ body { margin: 0px; font-family: Tahoma, Geneva, sans-serif; font-size: 14px; }
 }
 .mainBody {
 	background-color: #1C2541;
+	color:white;
 	font-family: 'Roboto Condensed', sans-serif;
 }
 .inputForm {
@@ -112,4 +113,11 @@ body { margin: 0px; font-family: Tahoma, Geneva, sans-serif; font-size: 14px; }
 .unamestatus {
 	float: right;
 	margin-right: 10px;
+}
+.userWrapper {
+	margin: 10%;
+	background-color: #3A506B;
+	padding: 15px;
+	padding-left: 20px;
+	border-radius: 15px;
 }
