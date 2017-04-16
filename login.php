@@ -54,22 +54,26 @@ if(isset($_POST["e"])){
 <meta charset="UTF-8">
 <title>Log In</title>
 <link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="style/style.css">
 <style type="text/css">
 #loginform{
+	color: white;
+	margin-left: auto;
 	margin-top:24px;	
+	width: 260px;
 }
 #loginform > div {
 	margin-top: 12px;	
+	width: 260px;
 }
-#loginform > input {
-	width: 200px;
-	padding: 3px;
-	background: #F3F9DD;
-}
-#loginbtn {
-	font-size:15px;
-	padding: 10px;
+
+#forgotPassButton {
+	color: #5BC0BE;
+	
+	margin-top: 10px;
 }
 </style>
 <script src="js/main.js"></script>
@@ -102,21 +106,23 @@ function login(){
 }
 </script>
 </head>
-<body>
+<body class="mainBody">
 <?php include_once("template_pageTop.php"); ?>
 <div id="pageMiddle">
-  <h3>Log In Here</h3>
   <!-- LOGIN FORM -->
-  <form id="loginform" onsubmit="return false;">
-    <div>Email Address:</div>
-    <input type="text" id="email" onfocus="emptyElement('status')" maxlength="88">
-    <div>Password:</div>
-    <input type="password" id="password" onfocus="emptyElement('status')" maxlength="100">
-    <br /><br />
-    <button id="loginbtn" onclick="login()">Log In</button> 
-    <p id="status"></p>
-    <a href="forgot_pass.php">Forgot Your Password?</a>
-  </form>
+  <div class="formWrapper loginFormWrapper">
+	  <form id="loginform" onsubmit="return false;">
+	  	<h3>Log In</h3>
+	    <div>Email Address:</div>
+	    <input class="form-control inputForm" type="text" id="email" onfocus="emptyElement('status')" maxlength="88">
+	    <div>Password:</div>
+	    <input class="form-control inputForm" type="password" id="password" onfocus="emptyElement('status')" maxlength="100">
+	    <div><a id="forgotPassButton" href="forgot_pass.php">Forgot Your Password?</a></div>
+	    <button class="formButton" id="loginbtn" onclick="login()">Submit</button> 
+	    <p id="status"></p>
+
+	  </form>
+  </div>
   <!-- LOGIN FORM -->
 </div>
 <?php include_once("template_pageBottom.php"); ?>

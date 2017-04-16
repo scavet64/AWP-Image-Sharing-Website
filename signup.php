@@ -1,5 +1,6 @@
 <?php
-session_start();
+include_once("php_includes/check_login_status.php");
+//session_start();
 // If user is logged in, header them away
 if(isset($_SESSION["username"])){
 	header("location: message.php?msg=already signed up and logged in");
@@ -121,26 +122,20 @@ if(isset($_POST["u"])){
 <meta charset="UTF-8">
 <title>Sign Up</title>
 <link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="style/style.css">
 <style type="text/css">
 #signupform{
+	color: white;
 	margin-top:24px;	
 }
 #signupform > div {
 	margin-top: 12px;	
 }
-#signupform > input,select {
-	width: 200px;
-	padding: 3px;
-	background: #F3F9DD;
-}
 #signupbtn {
 	font-size:18px;
-	padding: 12px;
-}
-#terms {
-	border:#CCC 1px solid;
-	background: #F5F5F5;
 	padding: 12px;
 }
 </style>
@@ -213,35 +208,37 @@ function openTerms(){
 window.onload = addEvents; */
 </script>
 </head>
-<body>
+<body class="mainBody">
 <?php include_once("template_pageTop.php"); ?>
 <div id="pageMiddle">
-  <h3>Sign Up Here</h3>
-  <form name="signupform" id="signupform" onsubmit="return false;">
-    <div>Username: </div>
-    <input id="username" type="text" onblur="checkusername()" onkeyup="restrict('username')" maxlength="16">
-    <span id="unamestatus"></span>
-    <div>Email Address:</div>
-    <input id="email" type="text" onfocus="emptyElement('status')" onkeyup="restrict('email')" maxlength="88">
-    <div>Create Password:</div>
-    <input id="pass1" type="password" onfocus="emptyElement('status')" maxlength="16">
-    <div>Confirm Password:</div>
-    <input id="pass2" type="password" onfocus="emptyElement('status')" maxlength="16">
-    <div>
-      <a href="#" onclick="return false" onmousedown="openTerms()">
-        View the Terms Of Use
-      </a>
-    </div>
-    <div id="terms" style="display:none;">
-      <h3>Web Intersect Terms Of Use</h3>
-      <p>1. Play nice here.</p>
-      <p>2. Take a bath before you visit.</p>
-      <p>3. Brush your teeth before bed.</p>
-    </div>
-    <br /><br />
-    <button id="signupbtn" onclick="signup()">Create Account</button>
-    <span id="status"></span>
-  </form>
+	<div class="formWrapper signupFormWrapper">
+		<form name="signupform" id="signupform" onsubmit="return false;">
+			<h3>Sign Up Here</h3>
+			<div>Username: </div>
+			<input id="username" class="form-control inputForm" type="text" onblur="checkusername()" onkeyup="restrict('username')" maxlength="16">
+			<span id="unamestatus" class="unamestatus"></span>
+			<div>Email Address:</div>
+			<input id="email" class="form-control form-control-warning inputForm" type="text" onfocus="emptyElement('status')" onkeyup="restrict('email')" maxlength="88">
+			<div>Create Password:</div>
+			<input id="pass1" class="form-control inputForm" type="password" onfocus="emptyElement('status')" maxlength="16">
+			<div>Confirm Password:</div>
+			<input id="pass2" class="form-control inputForm" type="password" onfocus="emptyElement('status')" maxlength="16">
+			<div>
+				<a href="#" onclick="return false" onmousedown="openTerms()">
+					View the Terms Of Use
+				</a>
+			</div>
+			<div id="terms" class="terms" style="display:none;">
+				<h4>Super Cool Terms Of Use</h4>
+				<p>1. Play nice here.</p>
+				<p>2. Take a bath before you visit.</p>
+				<p>3. Brush your teeth before bed.</p>
+				<p>4. Only upload PG-13 content.</p>
+			</div>
+			<button class="formButton" id="signupbtn" onclick="signup()">Create Account</button>
+			<span id="status"></span>
+		</form>
+	</div>
 </div>
 <?php include_once("template_pageBottom.php"); ?>
 </body>
