@@ -39,22 +39,19 @@ if (isset($_FILES["photo"]["name"]) && $_FILES["photo"]["tmp_name"] != ""){
 	$resized_file = "../uploads/$db_file_name";
 	$wmax = 1920;
 	$hmax = 1080;
-	img_resize($target_file, $resized_file, $wmax, $hmax, $fileExt);
+	//img_resize($target_file, $resized_file, $wmax, $hmax, $fileExt);
 	$fileLocation = 'uploads/'.$db_file_name;
 	
 	//FIXME: Make this a transaction
 	
 	//insert photo into database
-	$sql = "insert into photo_files (uploadname, uploaddate, caption, filelocation) VALUES ('$db_file_name', now(), '$photoCaption', '$fileLocation')";
+	$sql = "insert into photo_files (uploadname, user_id, uploaddate, caption, filelocation) 
+	        VALUES ('$db_file_name', '$log_id', now(), '$photoCaption', '$fileLocation')";
 	$query = mysqli_query($db_conx, $sql); 
 	$newPhotoId = mysqli_insert_id($db_conx);
 	
-	//make connection between user and photo
-	$sql = "insert into photo_user_links (user_id, photo_id) VALUES ('$log_id' ,'$newPhotoId')";
-	$query = mysqli_query($db_conx, $sql); 
-	$uid = mysqli_insert_id($db_conx);
 	mysqli_close($db_conx);
-	//header("location: ../user.php?u=$log_username");
+	header("location: ../index.php");
 	exit();
 }
 ?>

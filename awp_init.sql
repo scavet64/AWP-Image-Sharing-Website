@@ -24,6 +24,55 @@ CREATE TABLE `photo_users` (
   CONSTRAINT userexists UNIQUE KEY (username, email)
 ) engine=innodb;
 
+CREATE TABLE `photo_files` (
+  `photo_id` int(8) NOT NULL auto_increment,
+  `user_id` int(6) NOT NULL,
+  `uploaddate` date NOT NULL,
+  `uploadname` varchar(128) NOT NULL,
+  `caption` varchar(128),      # check the caption for special chars
+  `filelocation` varchar(256) NOT NULL, # probably want to remove special chars
+  PRIMARY KEY  (`photo_id`),
+  CONSTRAINT user_id
+  FOREIGN KEY (`user_id`) REFERENCES photo_users(`user_id`)
+) engine=innodb;
+
+CREATE TABLE `photo_user_links` (
+  `connection_id` int(8) NOT NULL auto_increment,
+  `user_id` int(6),
+  `photo_id` int(8),
+  PRIMARY KEY  (`connection_id`)
+) engine=innodb;
+
+CREATE TABLE `photo_comments` (
+  `comment_id` int(8) NOT NULL auto_increment,
+  `user_id` int(6), # user who LEFT the comment!
+  `photo_id` int(8),
+  `comment_text` varchar(128),
+  PRIMARY KEY  (`comment_id`)
+) engine=innodb;
+
+CREATE TABLE blockedusers ( 
+                id INT(11) NOT NULL AUTO_INCREMENT,
+                blocker int(8) NOT NULL,
+                blockee int(8) NOT NULL,
+                blockdate DATETIME NOT NULL,
+                PRIMARY KEY (id),
+                CONSTRAINT blocker
+                FOREIGN KEY (blocker) REFERENCES photo_users(user_id),
+                CONSTRAINT blockee
+                FOREIGN KEY (blockee) REFERENCES photo_users(user_id)
+                ) engine=innodb;
+
+
+# Note that these two tables do NOT specify foreign key constraints;
+# if you want to add that, see:
+# http://elvis.rowan.edu/~kilroy/awp/Wk8.2-SQL2/BetterKeys.txt
+#
+# You probably want "on delete cascade", so if an account is
+# deleted all the associated picture are deleted, and all the
+# comments on those pictures are deleted.  Test carefully!
+
+
 # If you want to use SQL constraints for extra error-checking, see
 # http://elvis.rowan.edu/~kilroy/awp/Wk8.2-SQL2/BetterKeys.txt
 
@@ -53,48 +102,3 @@ CREATE TABLE `photo_users` (
 #
 # but you'll have to sha1() the entered password when calling
 # bindParam().
-
-
-CREATE TABLE `photo_files` (
-  `photo_id` int(8) NOT NULL auto_increment,
-  `uploaddate` date NOT NULL,
-  `uploadname` varchar(128) NOT NULL,
-  `caption` varchar(128),      # check the caption for special chars
-  `filelocation` varchar(256) NOT NULL, # probably want to remove special chars
-  PRIMARY KEY  (`photo_id`)
-) engine=innodb;
-
-# Note that these two tables do NOT specify foreign key constraints;
-# if you want to add that, see:
-# http://elvis.rowan.edu/~kilroy/awp/Wk8.2-SQL2/BetterKeys.txt
-#
-# You probably want "on delete cascade", so if an account is
-# deleted all the associated picture are deleted, and all the
-# comments on those pictures are deleted.  Test carefully!
-
-CREATE TABLE `photo_user_links` (
-  `connection_id` int(8) NOT NULL auto_increment,
-  `user_id` int(6),
-  `photo_id` int(8),
-  PRIMARY KEY  (`connection_id`)
-) engine=innodb;
-
-CREATE TABLE `photo_comments` (
-  `comment_id` int(8) NOT NULL auto_increment,
-  `user_id` int(6), # user who LEFT the comment!
-  `photo_id` int(8),
-  `comment_text` varchar(128),
-  PRIMARY KEY  (`comment_id`)
-) engine=innodb;
-
-CREATE TABLE blockedusers ( 
-                id INT(11) NOT NULL AUTO_INCREMENT,
-                blocker VARCHAR(16) NOT NULL,
-                blockee VARCHAR(16) NOT NULL,
-                blockdate DATETIME NOT NULL,
-                PRIMARY KEY (id),
-                CONSTRAINT blocker
-                FOREIGN KEY (blocker) REFERENCES photo_users(username),
-                CONSTRAINT blockee
-                FOREIGN KEY (blockee) REFERENCES photo_users(username)
-                ) engine=innodb;

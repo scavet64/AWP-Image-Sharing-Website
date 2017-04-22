@@ -67,11 +67,11 @@ body { margin: 0px; font-family: Tahoma, Geneva, sans-serif; font-size: 14px; }
 	font-size: 12px;
 	color: #CCC;
 	text-align: center;
-	position: absolute;
 	right: 0;
   	bottom: 0;
   	left: 0;
   	padding: 1rem;
+  	margin-top: 30px;
 }
 .mainBody {
 	background-color: #1C2541;
@@ -256,3 +256,39 @@ body { margin: 0px; font-family: Tahoma, Geneva, sans-serif; font-size: 14px; }
 /*        width: 100%;*/
 /*    }*/
 /*}*/
+
+.displayImages{
+	max-height: 500px;
+	max-width: 500px;
+
+	box-shadow: 0px 0px 10px #000;
+	border-color: white;
+	border-radius: 5px;
+}
+.photoContainer{
+	margin-top: 15px;
+	padding: 15px;
+	background-color: #3A506B;
+	border-radius: 5px;
+	width:525px;
+	margin: auto;
+}
+.descriptionText{
+	margin-top: 10px;
+}
+.comment{
+	margin-top: 10px;
+}
+.pictureOwner{
+	float: left;
+	margin-right: 3px;
+}
+.uploadDate{
+	float: right;
+	margin-left: 3px;
+}
+.photoUploadButtonWrapper{
+	width: 50%;
+	margin: auto;
+	margin-bottom: 15px;
+}

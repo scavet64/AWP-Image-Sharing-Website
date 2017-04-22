@@ -17,11 +17,13 @@ include_once("php_includes/check_login_status.php");
 <body class="mainBody">
 <?php include_once("template_pageTop.php"); ?>
 <div id="pageMiddle">
-  <button class="uploadbutton" id="uploadButton" onclick="toggleElement('uploadModal')">Upload</button> 
+    <div class="photoUploadButtonWrapper">
+        <button class="uploadbutton" id="uploadButton" onclick="toggleElement('uploadModal')" style="float:none; width:100%">Upload</button>
+    </div>
 
-<!-- The Modal -->
+<!-- The Upload Modal -->
 <div id="uploadModal" class="modal">
-  <span onclick="document.getElementById('uploadModal').style.display='none'" 
+  <span onclick="toggleElement('uploadModal')" 
     class="close" title="Close Modal">&times;</span>
 
   <!-- Modal Content -->
@@ -39,14 +41,42 @@ include_once("php_includes/check_login_status.php");
 
     <div class="modalContainer" style="background-color:#f1f1f1">
         <div style="height:50px;">
-            <button type="button" onclick="document.getElementById('uploadModal').style.display='none'" class="uploadbutton cancelbtn sbsLeftButton">Cancel</button>
+            <button type="button" onclick="toggleElement('uploadModal')" class="uploadbutton cancelbtn sbsLeftButton">Cancel</button>
             <button type="submit" class="uploadbutton sbsRightButton">Upload</button>
         </div>
     </div>
   </form>
 </div>
   
+  
+    <!--Place where we display photos-->
+    <div id="photoDisplayContainer" class="photoDisplayContainer">
+    </div>
+  
 </div>
 <?php include_once("template_pageBottom.php"); ?>
 </body>
+
+<script>
+// Get the modal
+var modal = document.getElementById('uploadModal');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+var ajax = ajaxObj("GET", "photo_display_gen.php");
+	ajax.onreadystatechange = function() {
+		if(ajaxReturn(ajax) == true) {
+
+            _('photoDisplayContainer').innerHTML = ajax.responseText
+
+		}
+	}
+	ajax.send("");
+</script>
+
 </html>

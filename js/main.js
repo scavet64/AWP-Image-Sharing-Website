@@ -23,3 +23,23 @@ function toggleElement(x){
 		x.style.display = 'block';
 	}
 }
+
+function postComment(id){
+	
+	//get the comment from the inputbox
+	var idToFind = "inputOnPhoto"+id;
+	var comment = _(idToFind).value;
+	
+	$.post("comment_controller.php",
+    {
+        comment: comment,
+        photo_id: id
+    },
+    function(data, status){
+    	if(status === "success"){
+    		_('commentsForPhoto'+id).innerHTML += data;
+    	} else {
+    		//something went wrong
+    	}
+    });
+}
