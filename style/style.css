@@ -33,7 +33,7 @@ body { margin: 0px; font-family: Tahoma, Geneva, sans-serif; font-size: 14px; }
 	text-align:right;
 }
 #pageTop > #pageTopWrap > #pageTopRest > #menu1 > div > a {
-	color: #CCC;
+	color: white;
 	text-decoration: none;
 }
 #pageTop > #pageTopWrap > #pageTopRest > #menu1 > div > a:hover {
@@ -47,7 +47,7 @@ body { margin: 0px; font-family: Tahoma, Geneva, sans-serif; font-size: 14px; }
 #pageTop > #pageTopWrap > #pageTopRest > #menu2 > div > a {
 	display: block;
 	float: left;
-	color:#CCC;
+	color: white;
 	text-decoration: none;
 	margin: 0px 16px;
 }
@@ -59,6 +59,7 @@ body { margin: 0px; font-family: Tahoma, Geneva, sans-serif; font-size: 14px; }
 	width: 1000px;
 	margin: 0px auto;
 	background: #1C2541;
+	min-height: 100%;
 }
 /* PAGE BOTTOM */
 #pageBottom{

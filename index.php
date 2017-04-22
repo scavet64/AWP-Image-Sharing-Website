@@ -15,7 +15,7 @@ include_once("php_includes/check_login_status.php");
 <body class="mainBody">
 <?php include_once("template_pageTop.php"); ?>
 <div id="pageMiddle">
-  &nbsp;
+  <button class="formButton" id="loginbtn" onclick="login()">Upload</button> 
 </div>
 <?php include_once("template_pageBottom.php"); ?>
 </body>

@@ -134,10 +134,6 @@ if(isset($_POST["u"])){
 #signupform > div {
 	margin-top: 12px;	
 }
-#signupbtn {
-	font-size:18px;
-	padding: 12px;
-}
 </style>
 <script src="js/main.js"></script>
 <script src="js/ajax.js"></script>
