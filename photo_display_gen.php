@@ -13,7 +13,7 @@ include_once("comment_controller.php");
 	while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
 		$id = $row["photo_id"];
 		$filename = $row["filename"];
-		$description = $row["description"];
+		$description = $row["caption"];
 		$uploaddate = $row["uploaddate"];
 		$filelocation = $row["filelocation"];
 		$photoOwner = $row["username"];
@@ -23,10 +23,12 @@ include_once("comment_controller.php");
     		<img src="'.$filelocation.'" id="photoID'.$id.'" class="displayImages" ></img>
     	</div>
     <div class="imageInfo">
-        <p id="description" class="pictureOwner">by: '.$photoOwner.'</p>
-        <p id="description" class="uploadDate">Uploaded on: '.$uploaddate.'</p>
+        <p id="ownerTag'.$id.'" class="pictureOwner">by: 
+        	<a class="linkToUser" href=user.php?u='.$photoOwner.'>'.$photoOwner.'</a>
+        </p>
+        <p id="uploadDate'.$id.'" class="uploadDate">Uploaded on: '.$uploaddate.'</p>
     </div>
-    <p id="description" class="descriptionText">'.$description.'</p>
+    <p id="description'.$id.'" class="descriptionText">'.$description.'</p>
     <div id=commentsForPhoto'.$id.'>
         '.genComments($id, $db_conx).'
     </div>

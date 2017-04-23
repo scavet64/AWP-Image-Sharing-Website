@@ -2,8 +2,8 @@
 function genComment($userWhoLeftComment, $comment) {
     $commentHTML = 
     '<div class="commentContainer">
-        <a id="user" class="commenter" href=user.php?u='.$userWhoLeftComment.'>'.$userWhoLeftComment.':</a>
-        <p id="comment1" class="comment">'.$comment.'</p>
+        <a class="linkToUser" href=user.php?u='.$userWhoLeftComment.'>'.$userWhoLeftComment.':</a>
+        <p class="comment">'.$comment.'</p>
     </div>';
     return $commentHTML;
 }
@@ -19,8 +19,8 @@ if(isset($_POST["comment"]) && isset($_POST["photo_id"])){
 	$photo_id = preg_replace('#[^a-z0-9]#i', '', $_POST['photo_id']);
 	
 	//insert comment into database
-	$sql = "insert into photo_comments (user_id, photo_id, comment_text) 
-	        VALUES ('$log_id', '$photo_id', '$comment')";
+	$sql = "insert into photo_comments (user_id, photo_id, comment_text, comment_date) 
+	        VALUES ('$log_id', '$photo_id', '$comment', now())";
 	$query = mysqli_query($db_conx, $sql); 
 	$newPhotoId = mysqli_insert_id($db_conx);
 	

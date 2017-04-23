@@ -10,6 +10,7 @@ if (isset($_FILES["photo"]["name"]) && $_FILES["photo"]["tmp_name"] != ""){
 	$fileType = $_FILES["photo"]["type"];
 	$fileSize = $_FILES["photo"]["size"];
 	$fileErrorMsg = $_FILES["photo"]["error"];
+	$description = mysqli_real_escape_string($db_conx, $_POST['description']);
 	$kaboom = explode(".", $fileName);
 	$fileExt = end($kaboom);
 	list($width, $height) = getimagesize($fileTmpLoc);
@@ -46,7 +47,7 @@ if (isset($_FILES["photo"]["name"]) && $_FILES["photo"]["tmp_name"] != ""){
 	
 	//insert photo into database
 	$sql = "insert into photo_files (uploadname, user_id, uploaddate, caption, filelocation) 
-	        VALUES ('$db_file_name', '$log_id', now(), '$photoCaption', '$fileLocation')";
+	        VALUES ('$db_file_name', '$log_id', now(), '$description', '$fileLocation')";
 	$query = mysqli_query($db_conx, $sql); 
 	$newPhotoId = mysqli_insert_id($db_conx);
 	

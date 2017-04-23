@@ -55,8 +55,6 @@ include_once("php_includes/check_login_status.php");
   
 </div>
 <?php include_once("template_pageBottom.php"); ?>
-</body>
-
 <script>
 // Get the modal
 var modal = document.getElementById('uploadModal');
@@ -78,5 +76,6 @@ var ajax = ajaxObj("GET", "photo_display_gen.php");
 	}
 	ajax.send("");
 </script>
+</body>
 
 </html>

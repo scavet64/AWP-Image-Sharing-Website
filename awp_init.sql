@@ -48,20 +48,38 @@ CREATE TABLE `photo_comments` (
   `user_id` int(6), # user who LEFT the comment!
   `photo_id` int(8),
   `comment_text` varchar(128),
+  `comment_date` date,
   PRIMARY KEY  (`comment_id`)
 ) engine=innodb;
 
+CREATE TABLE `hashtags` (
+  `hashtag_id` int(8) NOT NULL auto_increment,
+  `hashtag_value` varchar(256) NOT NULL,
+  PRIMARY KEY  (`hashtag_id`),
+) engine=innodb;
+
+CREATE TABLE `photos_hashtags` (
+  `connection_id` int(8) NOT NULL auto_increment,
+  `photo_id` int(6) NOT NULL,
+  `hashtag_id` date NOT NULL,
+  PRIMARY KEY  (`connection_id`),
+  CONSTRAINT photo_id
+  FOREIGN KEY (`photo_id`) REFERENCES photo_files(`photo_id`)
+  CONSTRAINT hashtag_id
+  FOREIGN KEY (`hashtag_id`) REFERENCES hashtags(`hashtag_id`)
+) engine=innodb;
+
 CREATE TABLE blockedusers ( 
-                id INT(11) NOT NULL AUTO_INCREMENT,
-                blocker int(8) NOT NULL,
-                blockee int(8) NOT NULL,
-                blockdate DATETIME NOT NULL,
-                PRIMARY KEY (id),
-                CONSTRAINT blocker
-                FOREIGN KEY (blocker) REFERENCES photo_users(user_id),
-                CONSTRAINT blockee
-                FOREIGN KEY (blockee) REFERENCES photo_users(user_id)
-                ) engine=innodb;
+  id INT(11) NOT NULL AUTO_INCREMENT,
+  blocker int(8) NOT NULL,
+  blockee int(8) NOT NULL,
+  blockdate DATETIME NOT NULL,
+  PRIMARY KEY (id),
+  CONSTRAINT blocker
+  FOREIGN KEY (blocker) REFERENCES photo_users(user_id),
+  CONSTRAINT blockee
+  FOREIGN KEY (blockee) REFERENCES photo_users(user_id)
+) engine=innodb;
 
 
 # Note that these two tables do NOT specify foreign key constraints;

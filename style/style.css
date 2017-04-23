@@ -276,18 +276,18 @@ body { margin: 0px; font-family: Tahoma, Geneva, sans-serif; font-size: 14px; }
 	margin-top: 15px;
 }
 .descriptionText{
-	margin-top: 10px;
+	margin-top: 0px;
 }
 .comment{
 	margin-top: 5px;
 	margin-bottom: 5px;
 }
-.commenter{
+.linkToUser{
 	margin-top: 10px;
 	color:white;
 	text-decoration: none;
 }
-.commenter:hover{
+.linkToUser:hover{
 	color:#6FFFE9;
 	text-decoration: none;
 }
