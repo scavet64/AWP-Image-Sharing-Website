@@ -22,7 +22,7 @@ include_once("comment_controller.php");
 		<div style="margin:auto;">
     		<img src="'.$filelocation.'" id="photoID'.$id.'" class="displayImages" ></img>
     	</div>
-    <div style="height:30px;">
+    <div class="imageInfo">
         <p id="description" class="pictureOwner">'.$photoOwner.'</p>
         <p id="description" class="uploadDate">'.$uploaddate.'</p>
     </div>
@@ -31,8 +31,8 @@ include_once("comment_controller.php");
         '.genComments($id, $db_conx).'
     </div>
     <div>
-        <input id="inputOnPhoto'.$id.'" type="text" name="firstname">
-        <button type="button" onclick="postComment('.$id.')" class="">Comment</button>
+        <input class="form-control commentBox" id="inputOnPhoto'.$id.'" type="text" name="firstname">
+        <button class="formButton commentButton" type="button" onclick="postComment('.$id.')" class="">Comment</button>
     </div>
 </div>';
 		

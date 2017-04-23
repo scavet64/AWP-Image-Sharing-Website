@@ -281,6 +281,15 @@ body { margin: 0px; font-family: Tahoma, Geneva, sans-serif; font-size: 14px; }
 .comment{
 	margin-top: 10px;
 }
+.commenter{
+	margin-top: 10px;
+	color:white;
+	text-decoration: none;
+}
+.commenter:hover{
+	color:#6FFFE9;
+	text-decoration: none;
+}
 .pictureOwner{
 	float: left;
 	margin-right: 3px;
@@ -293,4 +302,24 @@ body { margin: 0px; font-family: Tahoma, Geneva, sans-serif; font-size: 14px; }
 	width: 50%;
 	margin: auto;
 	margin-bottom: 15px;
+}
+.commentButton{
+	float:none;
+	margin:auto;
+	margin-top: 10px;
+	display:block;
+}
+.commentBox{
+	float:left;
+	width:400px;
+}
+.imageInfo{
+	height:30px;
+	margin-top: 10px;
+}
+.commentContainer{
+	border-radius: 5px;
+	padding: 5px;
+	background: rgba(255,255,255,.25);
+	margin-bottom: 5px;
 }
