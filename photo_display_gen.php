@@ -19,7 +19,9 @@ include_once("comment_controller.php");
 		$photoOwner = $row["username"];
 		
 		$containerString .= '<div class="photoContainer">
-    <img src="'.$filelocation.'" id="photoID'.$id.'" class="displayImages" ></img>
+		<div style="margin:auto;">
+    		<img src="'.$filelocation.'" id="photoID'.$id.'" class="displayImages" ></img>
+    	</div>
     <div style="height:30px;">
         <p id="description" class="pictureOwner">'.$photoOwner.'</p>
         <p id="description" class="uploadDate">'.$uploaddate.'</p>
