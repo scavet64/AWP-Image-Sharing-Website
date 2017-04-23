@@ -3,31 +3,9 @@ include_once("php_includes/check_login_status.php");
 include_once("comment_controller.php");
 ?>
 <?php 
-// //if (isset($_POST["show"]) && $_POST["show"] == "all"){
-// 	$picstring = "";
-// // 	$gallery = preg_replace('#[^a-z 0-9,]#i', '', $_POST["gallery"]);
-// // 	$user = preg_replace('#[^a-z0-9]#i', '', $_POST["user"]);
-// 	$sql = "SELECT * FROM photo_files ORDER BY uploaddate ASC";
-// 	$query = mysqli_query($db_conx, $sql);
-// 	while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
-// 		$id = $row["id"];
-// 		$filename = $row["filename"];
-// 		$description = $row["description"];
-// 		$uploaddate = $row["uploaddate"];
-// 		$picstring .= "$id|$filename|$description|$uploaddate|||";
-//     }
-// 	mysqli_close($db_conx);
-// 	$picstring = trim($picstring, "|||");
-// 	echo $picstring;
-// 	exit();
-// //}
-?>
-<?php 
 //if (isset($_GET["show"]) && $_GET["show"] == "all"){
 	$picstring = "";
 	$containerString = "";
-// 	$gallery = preg_replace('#[^a-z 0-9,]#i', '', $_POST["gallery"]);
-// 	$user = preg_replace('#[^a-z0-9]#i', '', $_POST["user"]);
 	$sql = "SELECT * FROM photo_files 
 	        JOIN photo_users USING(user_id)
 	        ORDER BY uploaddate ASC LIMIT 10";
@@ -48,7 +26,7 @@ include_once("comment_controller.php");
     </div>
     <p id="description" class="descriptionText">'.$description.'</p>
     <div id=commentsForPhoto'.$id.'>
-        '.genComment($log_username,'you stink!!!').'
+        '.genComments($id, $db_conx).'
     </div>
     <div>
         <input id="inputOnPhoto'.$id.'" type="text" name="firstname">
@@ -56,13 +34,31 @@ include_once("comment_controller.php");
     </div>
 </div>';
 		
-		//$picstring .= "$id|$filename|$description|$uploaddate|||";
     }
 	mysqli_close($db_conx);
-	//$picstring = trim($picstring, "|||");
 	echo $containerString;
 	exit();
-//}
+?>
+
+<?php
+function genComments($id, $db_conx) {
+    
+    $commentArrayOfDivs = "";
+    
+    $sqlComment = "SELECT * FROM photo_comments
+            JOIN photo_users USING(user_id)
+	        WHERE photo_id = ".$id." LIMIT 10";
+	$queryComments = mysqli_query($db_conx, $sqlComment);
+    
+    while ($rowComment = mysqli_fetch_array($queryComments, MYSQLI_ASSOC)) {
+		$commentText = $rowComment["comment_text"];
+		$commenter = $rowComment["username"];
+    
+        $commentArrayOfDivs .= genComment($commenter, $commentText);
+    }
+    
+    return $commentArrayOfDivs;
+}
 ?>
 
 <!--<div id="photo1" class="photoContainer">-->

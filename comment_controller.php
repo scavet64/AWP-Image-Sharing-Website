@@ -7,29 +7,6 @@ function genComment($userWhoLeftComment, $comment) {
     </div>';
     return $commentHTML;
 }
-
-// function genComments() {
-    
-//     $commentArrayOfDivs = "";
-    
-//     $sqlComment = "SELECT * FROM photo_comments
-//             JOIN photo_users USING(user_id)
-// 	        WHERE photo_id = ".$id." LIMIT 10";
-// 	$queryComments = mysqli_query($db_conx, $sql);
-    
-//     while ($rowComment = mysqli_fetch_array($queryComments, MYSQLI_ASSOC)) {
-//     	$id = $row["comment_id"];
-// 		$user_id = $row["user_id"];
-// 		$photo_id = $row["photo_id"];
-// 		$commentText = $row["comment_text"];
-// 		$commenter = $row["username"];
-    
-//         $commentArrayOfDivs .= genComment($commenter, $commentText);
-//     }
-//     mysqli_close($db_conx);
-    
-//     return $commentArrayOfDivs;
-// }
 ?>
 
 
