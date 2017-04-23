@@ -2,7 +2,7 @@
 function genComment($userWhoLeftComment, $comment) {
     $commentHTML = 
     '<div class="commentContainer">
-        <a id="user" class="commenter" href=user.php?u='.$userWhoLeftComment.'>'.$userWhoLeftComment.'</a>
+        <a id="user" class="commenter" href=user.php?u='.$userWhoLeftComment.'>'.$userWhoLeftComment.':</a>
         <p id="comment1" class="comment">'.$comment.'</p>
     </div>';
     return $commentHTML;
@@ -15,7 +15,7 @@ function genComment($userWhoLeftComment, $comment) {
 if(isset($_POST["comment"]) && isset($_POST["photo_id"])){
 	// GATHER THE POSTED DATA INTO LOCAL VARIABLES
 	include_once("php_includes/check_login_status.php");
-	$comment = preg_replace('#[^a-z0-9 ]#i', '', $_POST['comment']);
+	$comment = mysqli_real_escape_string($db_conx, $_POST['comment']);
 	$photo_id = preg_replace('#[^a-z0-9]#i', '', $_POST['photo_id']);
 	
 	//insert comment into database
@@ -24,6 +24,6 @@ if(isset($_POST["comment"]) && isset($_POST["photo_id"])){
 	$query = mysqli_query($db_conx, $sql); 
 	$newPhotoId = mysqli_insert_id($db_conx);
 	
-	echo genComment($log_username, $comment);
+	echo genComment($log_username, $_POST['comment']);
 }
 ?>

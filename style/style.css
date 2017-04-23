@@ -279,7 +279,8 @@ body { margin: 0px; font-family: Tahoma, Geneva, sans-serif; font-size: 14px; }
 	margin-top: 10px;
 }
 .comment{
-	margin-top: 10px;
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
 .commenter{
 	margin-top: 10px;

@@ -23,8 +23,8 @@ include_once("comment_controller.php");
     		<img src="'.$filelocation.'" id="photoID'.$id.'" class="displayImages" ></img>
     	</div>
     <div class="imageInfo">
-        <p id="description" class="pictureOwner">'.$photoOwner.'</p>
-        <p id="description" class="uploadDate">'.$uploaddate.'</p>
+        <p id="description" class="pictureOwner">by: '.$photoOwner.'</p>
+        <p id="description" class="uploadDate">Uploaded on: '.$uploaddate.'</p>
     </div>
     <p id="description" class="descriptionText">'.$description.'</p>
     <div id=commentsForPhoto'.$id.'>
