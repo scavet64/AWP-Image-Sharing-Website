@@ -2,6 +2,7 @@
 include_once("php_includes/check_login_status.php");
 include_once("comment_controller.php");
 include_once("php_includes/date_conversion.php");
+include_once("php_parsers/user_tagging_parser.php");
 ?>
 <?php 
 //if (isset($_GET["show"]) && $_GET["show"] == "all"){
@@ -63,6 +64,8 @@ function genComments($id, $db_conx) {
 		$date = $rowComment["comment_date"];
     
         $displayDate = convertDate($date, 'America/New_York');
+        
+        $commentText = parseTextForUsername($commentText);
     
         $commentArrayOfDivs .= genComment($commenter, $commentText, $displayDate);
     }

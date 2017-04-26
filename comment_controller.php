@@ -16,6 +16,7 @@ function genComment($userWhoLeftComment, $comment, $commentDate) {
 // Ajax calls this REGISTRATION code to execute
 if(isset($_POST["comment"]) && isset($_POST["photo_id"])){
 	include_once("php_includes/check_login_status.php");
+	include_once("php_parsers/user_tagging_parser.php");
 	
 	$comment = mysqli_real_escape_string($db_conx, $_POST['comment']);
 	$photo_id = preg_replace('#[^a-z0-9]#i', '', $_POST['photo_id']);
@@ -26,6 +27,8 @@ if(isset($_POST["comment"]) && isset($_POST["photo_id"])){
 	$query = mysqli_query($db_conx, $sql); 
 	$newPhotoId = mysqli_insert_id($db_conx);
 	
-	echo genComment($log_username, $_POST['comment'], 'Just Now');
+	$comment = parseTextForUsername($comment);
+	
+	echo genComment($log_username, $comment, 'Just Now');
 }
 ?>

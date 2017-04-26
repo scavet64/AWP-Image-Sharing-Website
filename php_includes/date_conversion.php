@@ -13,14 +13,4 @@ function convertDate($dateToConvert, $TimezoneToSet){
     // Outputs a date/time string based on the time zone you've set on the object.
     return $datetime->format('m/d/y - h:i A T');
 }
-
-
-
-
-
-
-
-
-
-
 ?>
