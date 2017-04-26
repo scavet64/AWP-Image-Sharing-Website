@@ -3,6 +3,7 @@ include_once("php_includes/check_login_status.php");
 include_once("comment_controller.php");
 include_once("php_includes/date_conversion.php");
 include_once("php_parsers/user_tagging_parser.php");
+include_once("php_parsers/hashtag_parser.php");
 ?>
 <?php 
 //if (isset($_GET["show"]) && $_GET["show"] == "all"){
@@ -21,6 +22,9 @@ include_once("php_parsers/user_tagging_parser.php");
 		$photoOwner = $row["username"];
 		
         $displayDate = convertDate($uploaddate, 'America/New_York');
+        
+        $description = parseTextForUsername($description);
+        $description = parseTextForHashtag($description);
 		
 		$containerString .= '<div class="photoContainer">
 		<div style="margin:auto;">
@@ -66,6 +70,7 @@ function genComments($id, $db_conx) {
         $displayDate = convertDate($date, 'America/New_York');
         
         $commentText = parseTextForUsername($commentText);
+        $commentText = parseTextForHashtag($commentText);
     
         $commentArrayOfDivs .= genComment($commenter, $commentText, $displayDate);
     }

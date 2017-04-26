@@ -17,6 +17,7 @@ function genComment($userWhoLeftComment, $comment, $commentDate) {
 if(isset($_POST["comment"]) && isset($_POST["photo_id"])){
 	include_once("php_includes/check_login_status.php");
 	include_once("php_parsers/user_tagging_parser.php");
+	include_once("php_parsers/hashtag_parser.php");
 	
 	$comment = mysqli_real_escape_string($db_conx, $_POST['comment']);
 	$photo_id = preg_replace('#[^a-z0-9]#i', '', $_POST['photo_id']);
@@ -28,6 +29,7 @@ if(isset($_POST["comment"]) && isset($_POST["photo_id"])){
 	$newPhotoId = mysqli_insert_id($db_conx);
 	
 	$comment = parseTextForUsername($comment);
+	$comment = parseTextForHashtag($comment);
 	
 	echo genComment($log_username, $comment, 'Just Now');
 }
