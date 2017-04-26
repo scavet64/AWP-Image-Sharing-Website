@@ -25,6 +25,7 @@ include_once("php_parsers/hashtag_parser.php");
         
         $description = parseTextForUsername($description);
         $description = parseTextForHashtag($description);
+        $matches = getHashtagArray($description);
 		
 		$containerString .= '<div class="photoContainer">
 		<div style="margin:auto;">

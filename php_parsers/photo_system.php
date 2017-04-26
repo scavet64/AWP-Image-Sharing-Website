@@ -5,6 +5,9 @@ if($user_ok != true || $log_username == "") {
 }
 ?><?php 
 if (isset($_FILES["photo"]["name"]) && $_FILES["photo"]["tmp_name"] != ""){
+	
+	include_once("../php_includes/hashtag_parser.php");
+	
 	$fileName = $_FILES["photo"]["name"];
     $fileTmpLoc = $_FILES["photo"]["tmp_name"];
 	$fileType = $_FILES["photo"]["type"];
@@ -50,6 +53,12 @@ if (isset($_FILES["photo"]["name"]) && $_FILES["photo"]["tmp_name"] != ""){
 	        VALUES ('$db_file_name', '$log_id', now(), '$description', '$fileLocation')";
 	$query = mysqli_query($db_conx, $sql); 
 	$newPhotoId = mysqli_insert_id($db_conx);
+	
+	//extract the hashtags
+	$matches = getHashtagArray($description);
+	//for each hashtag, create if doesnt exist
+	
+	//create bridge between hashtag and photo
 	
 	mysqli_close($db_conx);
 	header("location: ../index.php");
