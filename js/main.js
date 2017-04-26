@@ -38,6 +38,7 @@ function postComment(id){
     function(data, status){
     	if(status === "success"){
     		_('commentsForPhoto'+id).innerHTML += data;
+    		_(idToFind).value = '';
     	} else {
     		//something went wrong
     	}

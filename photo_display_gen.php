@@ -1,6 +1,7 @@
 <?php
 include_once("php_includes/check_login_status.php");
 include_once("comment_controller.php");
+include_once("php_includes/date_conversion.php");
 ?>
 <?php 
 //if (isset($_GET["show"]) && $_GET["show"] == "all"){
@@ -18,6 +19,8 @@ include_once("comment_controller.php");
 		$filelocation = $row["filelocation"];
 		$photoOwner = $row["username"];
 		
+        $displayDate = convertDate($uploaddate, 'America/New_York');
+		
 		$containerString .= '<div class="photoContainer">
 		<div style="margin:auto;">
     		<img src="'.$filelocation.'" id="photoID'.$id.'" class="displayImages" ></img>
@@ -26,7 +29,7 @@ include_once("comment_controller.php");
         <p id="ownerTag'.$id.'" class="pictureOwner">by: 
         	<a class="linkToUser" href=user.php?u='.$photoOwner.'>'.$photoOwner.'</a>
         </p>
-        <p id="uploadDate'.$id.'" class="uploadDate">Uploaded on: '.$uploaddate.'</p>
+        <p id="uploadDate'.$id.'" class="uploadDate">Uploaded on: '.$displayDate.'</p>
     </div>
     <p id="description'.$id.'" class="descriptionText">'.$description.'</p>
     <div id=commentsForPhoto'.$id.'>
@@ -57,8 +60,11 @@ function genComments($id, $db_conx) {
     while ($rowComment = mysqli_fetch_array($queryComments, MYSQLI_ASSOC)) {
 		$commentText = $rowComment["comment_text"];
 		$commenter = $rowComment["username"];
+		$date = $rowComment["comment_date"];
     
-        $commentArrayOfDivs .= genComment($commenter, $commentText);
+        $displayDate = convertDate($date, 'America/New_York');
+    
+        $commentArrayOfDivs .= genComment($commenter, $commentText, $displayDate);
     }
     
     return $commentArrayOfDivs;

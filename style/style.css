@@ -314,6 +314,9 @@ body { margin: 0px; font-family: Tahoma, Geneva, sans-serif; font-size: 14px; }
 	float:left;
 	width:400px;
 }
+.commentDate{
+	float:right;
+}
 .imageInfo{
 	height:30px;
 	margin-top: 10px;

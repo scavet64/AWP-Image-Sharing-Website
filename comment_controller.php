@@ -1,8 +1,10 @@
 <?php
-function genComment($userWhoLeftComment, $comment) {
+function genComment($userWhoLeftComment, $comment, $commentDate) {
+	
     $commentHTML = 
     '<div class="commentContainer">
         <a class="linkToUser" href=user.php?u='.$userWhoLeftComment.'>'.$userWhoLeftComment.':</a>
+        <p class="commentDate">'.$commentDate.'</p>
         <p class="comment">'.$comment.'</p>
     </div>';
     return $commentHTML;
@@ -13,8 +15,8 @@ function genComment($userWhoLeftComment, $comment) {
 <?php
 // Ajax calls this REGISTRATION code to execute
 if(isset($_POST["comment"]) && isset($_POST["photo_id"])){
-	// GATHER THE POSTED DATA INTO LOCAL VARIABLES
 	include_once("php_includes/check_login_status.php");
+	
 	$comment = mysqli_real_escape_string($db_conx, $_POST['comment']);
 	$photo_id = preg_replace('#[^a-z0-9]#i', '', $_POST['photo_id']);
 	
@@ -24,6 +26,6 @@ if(isset($_POST["comment"]) && isset($_POST["photo_id"])){
 	$query = mysqli_query($db_conx, $sql); 
 	$newPhotoId = mysqli_insert_id($db_conx);
 	
-	echo genComment($log_username, $_POST['comment']);
+	echo genComment($log_username, $_POST['comment'], 'Just Now');
 }
 ?>

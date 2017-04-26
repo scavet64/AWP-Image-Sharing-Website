@@ -7,10 +7,12 @@ drop table IF EXISTS `photo_files`;
 drop table IF EXISTS `photo_user_links`;
 drop table IF EXISTS `photo_comments`;
 drop table IF EXISTS `blockedusers`;
+drop table IF EXISTS `hashtags`;
+drop table IF EXISTS `photos_hashtags`;
 SET FOREIGN_KEY_CHECKS=1;
 
 CREATE TABLE `photo_users` (
-  `user_id` int(6) NOT NULL auto_increment,
+  `user_id` int(8) NOT NULL auto_increment,
   `joindate` DATETIME NOT NULL,
   `lastlogin` DATETIME NOT NULL,
   `username` varchar(50) NOT NULL,
@@ -26,8 +28,8 @@ CREATE TABLE `photo_users` (
 
 CREATE TABLE `photo_files` (
   `photo_id` int(8) NOT NULL auto_increment,
-  `user_id` int(6) NOT NULL,
-  `uploaddate` date NOT NULL,
+  `user_id` int(8) NOT NULL,
+  `uploaddate` timestamp NOT NULL,
   `uploadname` varchar(128) NOT NULL,
   `caption` varchar(128),      # check the caption for special chars
   `filelocation` varchar(256) NOT NULL, # probably want to remove special chars
@@ -38,33 +40,33 @@ CREATE TABLE `photo_files` (
 
 CREATE TABLE `photo_user_links` (
   `connection_id` int(8) NOT NULL auto_increment,
-  `user_id` int(6),
+  `user_id` int(8),
   `photo_id` int(8),
   PRIMARY KEY  (`connection_id`)
 ) engine=innodb;
 
 CREATE TABLE `photo_comments` (
   `comment_id` int(8) NOT NULL auto_increment,
-  `user_id` int(6), # user who LEFT the comment!
+  `user_id` int(8), # user who LEFT the comment!
   `photo_id` int(8),
   `comment_text` varchar(128),
-  `comment_date` date,
+  `comment_date` timestamp,
   PRIMARY KEY  (`comment_id`)
 ) engine=innodb;
 
 CREATE TABLE `hashtags` (
   `hashtag_id` int(8) NOT NULL auto_increment,
   `hashtag_value` varchar(256) NOT NULL,
-  PRIMARY KEY  (`hashtag_id`),
+  PRIMARY KEY  (`hashtag_id`)
 ) engine=innodb;
 
 CREATE TABLE `photos_hashtags` (
   `connection_id` int(8) NOT NULL auto_increment,
-  `photo_id` int(6) NOT NULL,
-  `hashtag_id` date NOT NULL,
+  `photo_id` int(8) NOT NULL,
+  `hashtag_id` int(8) NOT NULL,
   PRIMARY KEY  (`connection_id`),
   CONSTRAINT photo_id
-  FOREIGN KEY (`photo_id`) REFERENCES photo_files(`photo_id`)
+  FOREIGN KEY (`photo_id`) REFERENCES photo_files(`photo_id`),
   CONSTRAINT hashtag_id
   FOREIGN KEY (`hashtag_id`) REFERENCES hashtags(`hashtag_id`)
 ) engine=innodb;

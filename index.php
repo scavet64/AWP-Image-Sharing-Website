@@ -33,6 +33,9 @@ include_once("php_includes/check_login_status.php");
       <label><b>Please select the photo to upload</b></label>
       <input type="file" name="photo" required>
 
+        <label class="btn btn-default btn-file">
+    Browse <input type="file" style="display: none;">
+</label>
       <label><b>Description</b></label>
       <input type="text" placeholder="Enter Description" name="description" required>
 
