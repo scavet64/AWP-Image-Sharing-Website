@@ -6,7 +6,7 @@ if($user_ok != true || $log_username == "") {
 ?><?php 
 if (isset($_FILES["photo"]["name"]) && $_FILES["photo"]["tmp_name"] != ""){
 	
-	include_once("../php_includes/hashtag_parser.php");
+	include_once("../php_parsers/hashtag_parser.php");
 	
 	$fileName = $_FILES["photo"]["name"];
     $fileTmpLoc = $_FILES["photo"]["tmp_name"];
@@ -55,10 +55,28 @@ if (isset($_FILES["photo"]["name"]) && $_FILES["photo"]["tmp_name"] != ""){
 	$newPhotoId = mysqli_insert_id($db_conx);
 	
 	//extract the hashtags
-	$matches = getHashtagArray($description);
+	$matches = getHashtagArray($description)[1];
 	//for each hashtag, create if doesnt exist
-	
-	//create bridge between hashtag and photo
+	foreach ($matches as $value){
+		$sql = "SELECT * FROM hashtags
+	    		WHERE hashtag_value = ".$value." LIMIT 1";
+		$query = mysqli_query($db_conx, $sql);
+		$numrows = mysqli_num_rows($user_query);
+		if($numrows < 1){
+			//create the hashtag
+			$sql = "insert into hashtags (hashtag_value) 
+	        		VALUES ('$value')";
+			$query = mysqli_query($db_conx, $sql); 
+			$hashtagID = mysqli_insert_id($db_conx);
+		} else {
+			$row = mysqli_fetch_array($user_query, MYSQLI_ASSOC);
+			$hashtagID = $row["hashtag_id"];
+		}
+		//create bridge between hashtag and photo
+		$sql = "insert into photos_hashtags (photo_id, hashtag_id) 
+	        	VALUES ('$newPhotoId','$hashtagID')";
+		$query = mysqli_query($db_conx, $sql); 
+	}
 	
 	mysqli_close($db_conx);
 	header("location: ../index.php");
