@@ -14,7 +14,16 @@ include_once("php_parsers/hashtag_parser.php");
 	        ORDER BY uploaddate ASC LIMIT 10";
 	$query = mysqli_query($db_conx, $sql);
 	while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
-		$id = $row["photo_id"];
+        $containerString .= generatePhotoDisplay($row, $db_conx);
+    }
+	mysqli_close($db_conx);
+	echo $containerString;
+	exit();
+?>
+
+<?php
+function generatePhotoDisplay($row, $db_conx){
+    	$id = $row["photo_id"];
 		$filename = $row["filename"];
 		$description = $row["caption"];
 		$uploaddate = $row["uploaddate"];
@@ -27,30 +36,28 @@ include_once("php_parsers/hashtag_parser.php");
         $description = parseTextForHashtag($description);
         $matches = getHashtagArray($description);
 		
-		$containerString .= '<div class="photoContainer">
-		<div style="margin:auto;">
-    		<img src="'.$filelocation.'" id="photoID'.$id.'" class="displayImages" ></img>
-    	</div>
-    <div class="imageInfo">
-        <p id="ownerTag'.$id.'" class="pictureOwner">by: 
-        	<a class="linkToUser" href=user.php?u='.$photoOwner.'>'.$photoOwner.'</a>
-        </p>
-        <p id="uploadDate'.$id.'" class="uploadDate">Uploaded on: '.$displayDate.'</p>
-    </div>
-    <p id="description'.$id.'" class="descriptionText">'.$description.'</p>
-    <div id=commentsForPhoto'.$id.'>
-        '.genComments($id, $db_conx).'
-    </div>
-    <div>
-        <input class="form-control commentBox" id="inputOnPhoto'.$id.'" type="text" name="firstname">
-        <button class="formButton commentButton" type="button" onclick="postComment('.$id.')" class="">Comment</button>
-    </div>
-</div>';
-		
-    }
-	mysqli_close($db_conx);
-	echo $containerString;
-	exit();
+		$containerString = 
+		'<div class="photoContainer">
+    		<div style="margin:auto;">
+        		<img src="'.$filelocation.'" id="photoID'.$id.'" class="displayImages" ></img>
+        	</div>
+            <div class="imageInfo">
+                <p id="ownerTag'.$id.'" class="pictureOwner">by: 
+                	<a class="linkToUser" href=user.php?u='.$photoOwner.'>'.$photoOwner.'</a>
+                </p>
+                <p id="uploadDate'.$id.'" class="uploadDate">Uploaded on: '.$displayDate.'</p>
+            </div>
+            <p id="description'.$id.'" class="descriptionText">'.$description.'</p>
+            <div id=commentsForPhoto'.$id.'>
+                '.genComments($id, $db_conx).'
+            </div>
+            <div>
+                <input class="form-control commentBox" id="inputOnPhoto'.$id.'" type="text" name="firstname">
+                <button class="formButton commentButton" type="button" onclick="postComment('.$id.')" class="">Comment</button>
+            </div>
+        </div>';
+        return $containerString;
+}
 ?>
 
 <?php
