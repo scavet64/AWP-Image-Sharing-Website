@@ -1,11 +1,19 @@
 <?php
-function genComment($userWhoLeftComment, $comment, $commentDate) {
+function genComment($userWhoLeftComment, $comment, $commentDate, $canDelete) {
+	
+	$deleteButton ='';
+	
+	if($canDelete){
+		//let them delete this comment
+		$deleteButton = '<button class="deleteCommentButton" type="button"></button>';
+	}
 	
     $commentHTML = 
     '<div class="commentContainer">
         <a class="linkToUser" href=user.php?u='.$userWhoLeftComment.'>'.$userWhoLeftComment.':</a>
         <p class="commentDate">'.$commentDate.'</p>
         <p class="comment">'.$comment.'</p>
+        '.$deleteButton.'
     </div>';
     return $commentHTML;
 }
@@ -31,6 +39,7 @@ if(isset($_POST["comment"]) && isset($_POST["photo_id"])){
 	$comment = parseTextForUsername($comment);
 	$comment = parseTextForHashtag($comment);
 	
-	echo genComment($log_username, $comment, 'Just Now');
+	
+	echo genComment($log_username, $comment, 'Just Now', True);
 }
 ?>

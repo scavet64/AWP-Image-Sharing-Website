@@ -33,15 +33,16 @@
             	        ORDER BY uploaddate ASC LIMIT 10";
             	        
             	$query = mysqli_query($db_conx, $sql);
-            	$numrows = mysqli_num_rows($user_query);
+            	$numrows = mysqli_num_rows($query);
 		        if($numrows < 1){
 		            //show no hashtags found!
+		            $containerString = '<p class="noHashTags">No photos with that hashtag!</p>';
 		        } else {
+		            $containerString = '<p>Photos with #'.$tag.'</p>';
                 	while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
                         $containerString .= generatePhotoDisplay($row, $db_conx);
                     }
 		        }
-                
                 echo $containerString;
             }
         ?>

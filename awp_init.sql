@@ -38,20 +38,26 @@ CREATE TABLE `photo_files` (
   FOREIGN KEY (`user_id`) REFERENCES photo_users(`user_id`)
 ) engine=innodb;
 
-CREATE TABLE `photo_user_links` (
-  `connection_id` int(8) NOT NULL auto_increment,
-  `user_id` int(8),
-  `photo_id` int(8),
-  PRIMARY KEY  (`connection_id`)
-) engine=innodb;
+-- CREATE TABLE `photo_user_links` (
+--   `connection_id` int(8) NOT NULL auto_increment,
+--   `user_id` int(8),
+--   `photo_id` int(8),
+--   PRIMARY KEY  (`connection_id`)
+-- ) engine=innodb;
 
 CREATE TABLE `photo_comments` (
   `comment_id` int(8) NOT NULL auto_increment,
-  `user_id` int(8), # user who LEFT the comment!
+  `user_id` int(8),
   `photo_id` int(8),
   `comment_text` varchar(128),
   `comment_date` timestamp,
-  PRIMARY KEY  (`comment_id`)
+  PRIMARY KEY  (`comment_id`),
+  CONSTRAINT user_id
+  FOREIGN KEY (`user_id`) REFERENCES photo_users(`user_id`)
+  ON DELETE CASCADE,
+  CONSTRAINT photo_id
+  FOREIGN KEY (`photo_id`) REFERENCES photo_files(`photo_id`)
+  ON DELETE CASCADE
 ) engine=innodb;
 
 CREATE TABLE `hashtags` (
@@ -66,9 +72,11 @@ CREATE TABLE `photos_hashtags` (
   `hashtag_id` int(8) NOT NULL,
   PRIMARY KEY  (`connection_id`),
   CONSTRAINT photo_id
-  FOREIGN KEY (`photo_id`) REFERENCES photo_files(`photo_id`),
+  FOREIGN KEY (`photo_id`) REFERENCES photo_files(`photo_id`)
+  ON DELETE CASCADE,
   CONSTRAINT hashtag_id
   FOREIGN KEY (`hashtag_id`) REFERENCES hashtags(`hashtag_id`)
+  ON DELETE CASCADE
 ) engine=innodb;
 
 CREATE TABLE blockedusers ( 
@@ -78,9 +86,11 @@ CREATE TABLE blockedusers (
   blockdate DATETIME NOT NULL,
   PRIMARY KEY (id),
   CONSTRAINT blocker
-  FOREIGN KEY (blocker) REFERENCES photo_users(user_id),
+  FOREIGN KEY (blocker) REFERENCES photo_users(user_id)
+  ON DELETE CASCADE,
   CONSTRAINT blockee
   FOREIGN KEY (blockee) REFERENCES photo_users(user_id)
+  ON DELETE CASCADE
 ) engine=innodb;
 
 

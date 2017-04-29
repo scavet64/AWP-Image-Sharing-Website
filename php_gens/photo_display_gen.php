@@ -7,7 +7,7 @@ include_once("php_parsers/hashtag_parser.php");
 ?>
 
 <?php
-function generatePhotoDisplay($row, $db_conx){
+function generatePhotoDisplay($row, $db_conx, $log_username){
     	$id = $row["photo_id"];
 		$filename = $row["filename"];
 		$description = $row["caption"];
@@ -34,7 +34,7 @@ function generatePhotoDisplay($row, $db_conx){
             </div>
             <p id="description'.$id.'" class="descriptionText">'.$description.'</p>
             <div id=commentsForPhoto'.$id.'>
-                '.genComments($id, $db_conx).'
+                '.genComments($id, $db_conx, $photoOwner, $log_username).'
             </div>
             <div>
                 <input class="form-control commentBox" id="inputOnPhoto'.$id.'" type="text" name="firstname">
@@ -46,10 +46,8 @@ function generatePhotoDisplay($row, $db_conx){
 ?>
 
 <?php
-function genComments($id, $db_conx) {
-    
+function genComments($id, $db_conx, $photoOwner, $log_username) {
     $commentArrayOfDivs = "";
-    
     $sqlComment = "SELECT * FROM photo_comments
             JOIN photo_users USING(user_id)
 	        WHERE photo_id = ".$id."
@@ -66,7 +64,13 @@ function genComments($id, $db_conx) {
         $commentText = parseTextForUsername($commentText);
         $commentText = parseTextForHashtag($commentText);
     
-        $commentArrayOfDivs = genComment($commenter, $commentText, $displayDate).$commentArrayOfDivs;
+        if($commenter == $log_username || $log_username == $photoOwner){
+            $canDelete = True;
+        } else {
+            $canDelete = False;
+        }
+    
+        $commentArrayOfDivs = genComment($commenter, $commentText, $displayDate, $canDelete).$commentArrayOfDivs;
     }
     
     return $commentArrayOfDivs;

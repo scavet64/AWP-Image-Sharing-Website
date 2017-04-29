@@ -15,7 +15,7 @@ include_once("php_gens/photo_display_gen.php");
 	        ORDER BY uploaddate DESC LIMIT 10";
 	$query = mysqli_query($db_conx, $sql);
 	while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
-        $containerString .= generatePhotoDisplay($row, $db_conx);
+        $containerString .= generatePhotoDisplay($row, $db_conx, $log_username);
     }
 	mysqli_close($db_conx);
 	echo $containerString;

@@ -336,3 +336,14 @@ body { margin: 0px; font-family: Tahoma, Geneva, sans-serif; font-size: 14px; }
 	background: rgba(255,255,255,.25);
 	margin-bottom: 5px;
 }
+.deleteCommentButton{
+	float: right;
+    margin-top: -25px;
+    margin-right: 5px;
+    width: 10px;
+    height: 15px;
+    opacity: .25;
+}
+.deleteCommentButton:hover{
+    opacity: .85;
+}
