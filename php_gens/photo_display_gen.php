@@ -52,7 +52,8 @@ function genComments($id, $db_conx) {
     
     $sqlComment = "SELECT * FROM photo_comments
             JOIN photo_users USING(user_id)
-	        WHERE photo_id = ".$id." LIMIT 10";
+	        WHERE photo_id = ".$id."
+	        ORDER BY comment_date DESC LIMIT 10";
 	$queryComments = mysqli_query($db_conx, $sqlComment);
     
     while ($rowComment = mysqli_fetch_array($queryComments, MYSQLI_ASSOC)) {
@@ -65,7 +66,7 @@ function genComments($id, $db_conx) {
         $commentText = parseTextForUsername($commentText);
         $commentText = parseTextForHashtag($commentText);
     
-        $commentArrayOfDivs .= genComment($commenter, $commentText, $displayDate);
+        $commentArrayOfDivs = genComment($commenter, $commentText, $displayDate).$commentArrayOfDivs;
     }
     
     return $commentArrayOfDivs;

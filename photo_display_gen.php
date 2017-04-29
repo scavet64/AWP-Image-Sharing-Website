@@ -12,7 +12,7 @@ include_once("php_gens/photo_display_gen.php");
 	$containerString = "";
 	$sql = "SELECT * FROM photo_files 
 	        JOIN photo_users USING(user_id)
-	        ORDER BY uploaddate ASC LIMIT 10";
+	        ORDER BY uploaddate DESC LIMIT 10";
 	$query = mysqli_query($db_conx, $sql);
 	while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
         $containerString .= generatePhotoDisplay($row, $db_conx);
