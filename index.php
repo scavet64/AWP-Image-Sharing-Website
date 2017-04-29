@@ -74,15 +74,17 @@ window.onclick = function(event) {
     }
 }
 
-var ajax = ajaxObj("GET", "photo_display_gen.php");
-	ajax.onreadystatechange = function() {
-		if(ajaxReturn(ajax) == true) {
-
-            _('photoDisplayContainer').innerHTML = ajax.responseText
-
-		}
-	}
-	ajax.send("");
+loadImages(0);
+var offset = 10;
+	$(window).scroll(function(){
+        if ($(window).scrollTop() == $(document).height()-$(window).height()){
+            console.log("hey bottom of the page here");
+            
+            loadImages(offset);
+            //add to our offset
+            offset += 10;
+        }
+    });
 </script>
 </body>
 

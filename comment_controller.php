@@ -46,14 +46,16 @@ function genComment($userWhoLeftComment, $comment, $commentDate, $canDelete, $co
 if(isset($_POST["comment_id"])){
 	include_once("php_includes/check_login_status.php");
 	
-	$comment_id = preg_replace('#[^a-z0-9]#i', '', $_POST['comment_id']);
-	
-	//insert comment into database
-	$sql = "DELETE FROM photo_comments 
-	        WHERE comment_id = '$comment_id'";
-	$query = mysqli_query($db_conx, $sql); 
-	$newPhotoId = mysqli_insert_id($db_conx);
-	header(index.php);
+	if($user_ok){
+		$comment_id = preg_replace('#[^a-z0-9]#i', '', $_POST['comment_id']);
+		
+		//delete comment from the database
+		$sql = "DELETE FROM photo_comments 
+		        WHERE comment_id = '$comment_id'";
+		$query = mysqli_query($db_conx, $sql); 
+		$newPhotoId = mysqli_insert_id($db_conx);
+	}
+	exit();
 }
 ?>
 
@@ -64,19 +66,23 @@ if(isset($_POST["comment"]) && isset($_POST["photo_id"])){
 	include_once("php_parsers/user_tagging_parser.php");
 	include_once("php_parsers/hashtag_parser.php");
 	
-	$comment = mysqli_real_escape_string($db_conx, $_POST['comment']);
-	$photo_id = preg_replace('#[^a-z0-9]#i', '', $_POST['photo_id']);
-	
-	//insert comment into database
-	$sql = "insert into photo_comments (user_id, photo_id, comment_text, comment_date) 
-	        VALUES ('$log_id', '$photo_id', '$comment', now())";
-	$query = mysqli_query($db_conx, $sql); 
-	$newComment_id= mysqli_insert_id($db_conx);
-	
-	$comment = parseTextForUsername($comment);
-	$comment = parseTextForHashtag($comment);
-	
-	
-	echo genComment($log_username, $comment, 'Just Now', True, $newComment_id);
+	if($user_ok){
+		$comment = mysqli_real_escape_string($db_conx, $_POST['comment']);
+		$photo_id = preg_replace('#[^a-z0-9]#i', '', $_POST['photo_id']);
+		
+		//insert comment into database
+		$sql = "insert into photo_comments (user_id, photo_id, comment_text, comment_date) 
+		        VALUES ('$log_id', '$photo_id', '$comment', now())";
+		$query = mysqli_query($db_conx, $sql); 
+		$newComment_id= mysqli_insert_id($db_conx);
+		
+		$comment = parseTextForUsername($comment);
+		$comment = parseTextForHashtag($comment);
+		
+		echo genComment($log_username, $comment, 'Just Now', True, $newComment_id);
+	} else {
+		//user not logged in.
+		echo "error";
+	}
 }
 ?>

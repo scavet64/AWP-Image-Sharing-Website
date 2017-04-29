@@ -152,8 +152,14 @@ function postComment(id){
     },
     function(data, status){
     	if(status === "success"){
-    		_('commentsForPhoto'+id).innerHTML += data;
-    		_(idToFind).value = '';
+    		if(data.trim() !== "error"){
+    			_('commentsForPhoto'+id).innerHTML += data;
+    			_(idToFind).value = '';
+    		} else {
+    			//user wasnt logged in, display an error somewhere
+    			alert("You cannot post a comment if you arent logged in");
+    		}
+
     	} else {
     		//something went wrong
     	}
@@ -208,6 +214,22 @@ function SearchHashtags(){
 	var uri = "hashtag.php?q="+search;
 	var res = encodeURI(uri);
 	window.location = res;
+}
+
+function loadImages(offset){
+	console.log("Loading images from offset: "+offset)
+	var ajax = ajaxObj("GET", "photo_display_gen.php?offset="+offset);
+	ajax.onreadystatechange = function() {
+		if(ajaxReturn(ajax) == true) {
+			console.log(ajax.responseText);
+			if(ajax.responseText.trim() === ""){
+				//clear the scroll function to stop the flood
+				$(window).unbind('scroll');
+			}
+            _('photoDisplayContainer').innerHTML += ajax.responseText
+		}
+	}
+	ajax.send("");
 }
 
 // $('button[name="remove_levels"]').on('click', function(e) {
