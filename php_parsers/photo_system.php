@@ -22,7 +22,7 @@ if (isset($_FILES["photo"]["name"]) && $_FILES["photo"]["tmp_name"] != ""){
         exit();	
 	}
 	$db_file_name = rand(100000000000,999999999999).".".$fileExt;
-	if($fileSize > 1048576) {
+	if($fileSize > 5242880) {
 		header("location: ../message.php?msg=ERROR: Your image file was larger than 1mb");
 		exit();	
 	} else if (!preg_match("/\.(gif|jpg|png)$/i", $fileName) ) {

@@ -354,3 +354,11 @@ body { margin: 0px; font-family: Tahoma, Geneva, sans-serif; font-size: 14px; }
 .deleteCommentButton:hover{
     opacity: .85;
 }
+.searchBar{
+	float:left;
+	width:400px;
+}
+.searchButton{
+	margin-top: 0px;
+	margin-left: 15px;
+}

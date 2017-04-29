@@ -7,6 +7,14 @@ if(isset($_POST["username"])){
 	
 	if($username == $log_username){
 	    //safe to delete
+	    
+	    //delete files from file system
+	    $sql = "SELECT * FROM photo_files WHERE user_id='$log_id'";
+        $query = mysqli_query($db_conx, $sql); 
+	    while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
+            unlink($row["filelocation"]);
+        }
+	    
 	    $sql = "DELETE FROM photo_users WHERE username='$username'";
         $query = mysqli_query($db_conx, $sql); 
 	    

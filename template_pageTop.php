@@ -38,8 +38,8 @@ if($user_ok == true) {
           <a href="index.php">
             <img id="home" style="width:30px;height:30px;margin-top:-5px;" src="images/home-icon.png" alt="home" title="Home">
           </a>
-          <a href="#">Menu_Item_1</a>
-          <a href="#">Menu_Item_2</a>
+          <input type="text" class="form-control searchBar" name="search"/>
+          <button class="formButton searchButton">Search</button>
         </div>
       </div>
     </div>
