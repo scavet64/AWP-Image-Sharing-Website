@@ -5,7 +5,10 @@ function genComment($userWhoLeftComment, $comment, $commentDate, $canDelete, $co
 	
 	if($canDelete){
 		//let them delete this comment
-		$deleteButton = '<button class="btn btn-xs btn-danger deleteCommentButton" onclick="deleteComment('.$comment_id.')" type="button"><i class="glyphicon glyphicon-trash"></i></button>';
+		$deleteButton = '<button class="btn btn-xs btn-danger deleteCommentButton" 
+							onclick="deleteComment('.$comment_id.')" type="button">
+							<i class="glyphicon glyphicon-trash"></i>
+						</button>';
 		
 		//maybe get this working one day
 		// $deleteButton = 
@@ -21,9 +24,15 @@ function genComment($userWhoLeftComment, $comment, $commentDate, $canDelete, $co
 		// //<input name="comment_id" value="'.$comment_id.'">
 	}
 	
+	if($userWhoLeftComment === '[deleted]'){
+		$LinkToUser = '<a class="deletedUser">'.$userWhoLeftComment.':</a>';
+	} else {
+		$LinkToUser = '<a class="linkToUser" href=user.php?u='.$userWhoLeftComment.'>'.$userWhoLeftComment.':</a>';
+	}
+	
     $commentHTML = 
     '<div id="comment'.$comment_id.'" class="commentContainer">
-        <a class="linkToUser" href=user.php?u='.$userWhoLeftComment.'>'.$userWhoLeftComment.':</a>
+        '.$LinkToUser.'
         <p class="commentDate">'.$commentDate.'</p>
         <p class="comment">'.$comment.'</p>
         '.$deleteButton.'

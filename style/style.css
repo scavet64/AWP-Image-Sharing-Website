@@ -292,6 +292,15 @@ body { margin: 0px; font-family: Tahoma, Geneva, sans-serif; font-size: 14px; }
 	color:#6FFFE9;
 	text-decoration: none;
 }
+.deletedUser{
+	margin-top: 10px;
+	color:white;
+	text-decoration: none;
+}
+.deletedUser:hover{
+	color:white;
+	text-decoration: none;
+}
 .hashtag{
 	color:#5BC0BE;
 	text-decoration: none;

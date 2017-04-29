@@ -40,7 +40,7 @@
 		        } else {
 		            $containerString = '<p>Photos with #'.$tag.'</p>';
                 	while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
-                        $containerString .= generatePhotoDisplay($row, $db_conx);
+                        $containerString .= generatePhotoDisplay($row, $db_conx, $log_username);
                     }
 		        }
                 echo $containerString;

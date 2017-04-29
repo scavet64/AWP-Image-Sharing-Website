@@ -25,6 +25,11 @@ if($numrows < 1){
 $isOwner = "no";
 if($u == $log_username && $user_ok == true){
 	$isOwner = "yes";
+	$deleteButton = 
+	'<button class="btn btn-xs btn-danger deleteCommentButton" 
+			onclick="deleteUser(\''.$log_username.'\')" type="button">
+		<i class="glyphicon glyphicon-trash"></i>
+	</button>';
 }
 // Fetch the user row from the query above
 while ($row = mysqli_fetch_array($user_query, MYSQLI_ASSOC)) {
@@ -56,6 +61,7 @@ while ($row = mysqli_fetch_array($user_query, MYSQLI_ASSOC)) {
 		<p>Is the viewer the page owner, logged in and verified? <b><?php echo $isOwner; ?></b></p>
 		<p>Join Date: <?php echo $joindate; ?></p>
 		<p>Last Session: <?php echo $lastsession; ?></p>
+		<?php echo $deleteButton?>
 	</div>
 </div>
 <?php include_once("template_pageBottom.php"); ?>

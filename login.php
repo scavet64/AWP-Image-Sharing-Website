@@ -78,34 +78,6 @@ if(isset($_POST["e"])){
 </style>
 <script src="js/main.js"></script>
 <script src="js/ajax.js"></script>
-<script>
-function emptyElement(x){
-	_(x).innerHTML = "";
-}
-function login(){
-	var e = _("email").value;
-	var p = _("password").value;
-	if(e == "" || p == ""){
-		_("status").innerHTML = "Fill out all of the form data";
-	} else {
-		_("loginbtn").style.display = "none";
-		_("status").innerHTML = 'please wait ...';
-		var ajax = ajaxObj("POST", "login.php");
-        ajax.onreadystatechange = function() {
-	        if(ajaxReturn(ajax) == true) {
-	            if(ajax.responseText == "login_failed"){
-					_("status").innerHTML = "Login unsuccessful, please try again.";
-					_("loginbtn").style.display = "block";
-				} else {
-					window.location = "user.php?u="+ajax.responseText;
-				}
-	        }
-        }
-        
-        ajax.send("e="+e+"&p="+p);
-	}
-}
-</script>
 </head>
 <body class="mainBody">
 <?php include_once("template_pageTop.php"); ?>
@@ -119,7 +91,7 @@ function login(){
 	    <div>Password:</div>
 	    <input class="form-control inputForm" type="password" id="password" onfocus="emptyElement('status')" maxlength="100">
 	    <div><a id="forgotPassButton" href="forgot_pass.php">Forgot Your Password?</a></div>
-	    <button class="formButton" id="loginbtn" onclick="login()">Submit</button> 
+	    <button class="formButton" id="loginbtn" onclick="loginForm()">Submit</button> 
 	    <p id="status"></p>
 
 	  </form>

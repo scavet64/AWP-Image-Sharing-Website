@@ -48,10 +48,19 @@ function generatePhotoDisplay($row, $db_conx, $log_username){
 <?php
 function genComments($id, $db_conx, $photoOwner, $log_username) {
     $commentArrayOfDivs = "";
-    $sqlComment = "SELECT * FROM photo_comments
-            JOIN photo_users USING(user_id)
-	        WHERE photo_id = ".$id."
-	        ORDER BY comment_date DESC LIMIT 10";
+    // $sqlComment = "SELECT * FROM photo_comments
+    //         JOIN photo_users USING(user_id)
+	   //     WHERE photo_id = ".$id."
+	   //     ORDER BY comment_date DESC LIMIT 10";
+	        
+	$sqlComment = "SELECT comment_text, username, comment_date, comment_id FROM photo_comments
+               JOIN photo_users USING(user_id)
+               WHERE photo_id =".$id."
+               UNION
+               SELECT comment_text, '[deleted]', comment_date, comment_id FROM photo_comments
+               WHERE user_id is NULL AND photo_id =".$id."
+               ORDER BY comment_date DESC LIMIT 10";
+               
 	$queryComments = mysqli_query($db_conx, $sqlComment);
     
     while ($rowComment = mysqli_fetch_array($queryComments, MYSQLI_ASSOC)) {
@@ -69,6 +78,10 @@ function genComments($id, $db_conx, $photoOwner, $log_username) {
             $canDelete = True;
         } else {
             $canDelete = False;
+        }
+        
+        if($commenter == null){
+            $commenter = '[DELETED]';
         }
     
         $commentArrayOfDivs = genComment($commenter, $commentText, $displayDate, $canDelete, $comment_id).$commentArrayOfDivs;

@@ -36,6 +36,7 @@ CREATE TABLE `photo_files` (
   PRIMARY KEY  (`photo_id`),
   CONSTRAINT photo_user_id
   FOREIGN KEY (`user_id`) REFERENCES photo_users(`user_id`)
+  ON DELETE CASCADE
 ) engine=innodb;
 
 -- CREATE TABLE `photo_user_links` (
@@ -54,7 +55,7 @@ CREATE TABLE `photo_comments` (
   PRIMARY KEY  (`comment_id`),
   CONSTRAINT comment_user_id
   FOREIGN KEY (`user_id`) REFERENCES photo_users(`user_id`)
-  ON DELETE CASCADE,
+  ON DELETE SET NULL,
   CONSTRAINT comment_photo_id
   FOREIGN KEY (`photo_id`) REFERENCES photo_files(`photo_id`)
   ON DELETE CASCADE
