@@ -58,6 +58,7 @@ function genComments($id, $db_conx, $photoOwner, $log_username) {
 		$commentText = $rowComment["comment_text"];
 		$commenter = $rowComment["username"];
 		$date = $rowComment["comment_date"];
+		$comment_id = $rowComment["comment_id"];
     
         $displayDate = convertDate($date, 'America/New_York');
         
@@ -70,7 +71,7 @@ function genComments($id, $db_conx, $photoOwner, $log_username) {
             $canDelete = False;
         }
     
-        $commentArrayOfDivs = genComment($commenter, $commentText, $displayDate, $canDelete).$commentArrayOfDivs;
+        $commentArrayOfDivs = genComment($commenter, $commentText, $displayDate, $canDelete, $comment_id).$commentArrayOfDivs;
     }
     
     return $commentArrayOfDivs;

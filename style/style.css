@@ -340,9 +340,7 @@ body { margin: 0px; font-family: Tahoma, Geneva, sans-serif; font-size: 14px; }
 	float: right;
     margin-top: -25px;
     margin-right: 5px;
-    width: 10px;
-    height: 15px;
-    opacity: .25;
+    opacity: .15;
 }
 .deleteCommentButton:hover{
     opacity: .85;
