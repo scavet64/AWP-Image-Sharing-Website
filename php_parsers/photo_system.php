@@ -59,9 +59,9 @@ if (isset($_FILES["photo"]["name"]) && $_FILES["photo"]["tmp_name"] != ""){
 	//for each hashtag, create if doesnt exist
 	foreach ($matches as $value){
 		$sql = "SELECT * FROM hashtags
-	    		WHERE hashtag_value = ".$value." LIMIT 1";
+	    		WHERE hashtag_value = '".$value."' LIMIT 1";
 		$query = mysqli_query($db_conx, $sql);
-		$numrows = mysqli_num_rows($user_query);
+		$numrows = mysqli_num_rows($query);
 		if($numrows < 1){
 			//create the hashtag
 			$sql = "insert into hashtags (hashtag_value) 
@@ -69,7 +69,7 @@ if (isset($_FILES["photo"]["name"]) && $_FILES["photo"]["tmp_name"] != ""){
 			$query = mysqli_query($db_conx, $sql); 
 			$hashtagID = mysqli_insert_id($db_conx);
 		} else {
-			$row = mysqli_fetch_array($user_query, MYSQLI_ASSOC);
+			$row = mysqli_fetch_array($query, MYSQLI_ASSOC);
 			$hashtagID = $row["hashtag_id"];
 		}
 		//create bridge between hashtag and photo

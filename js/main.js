@@ -203,6 +203,13 @@ function deleteUser(username){
 	}
 }
 
+function SearchHashtags(){
+	var search = _("searchBar").value.replace(/#/g,'%23');
+	var uri = "hashtag.php?q="+search;
+	var res = encodeURI(uri);
+	window.location = res;
+}
+
 // $('button[name="remove_levels"]').on('click', function(e) {
 //   var $form = $(this).closest('form');
 //   e.preventDefault();

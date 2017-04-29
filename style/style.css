@@ -362,3 +362,7 @@ body { margin: 0px; font-family: Tahoma, Geneva, sans-serif; font-size: 14px; }
 	margin-top: 0px;
 	margin-left: 15px;
 }
+.hashTagsInSearch{
+	margin:auto;
+	text-align: center;
+}

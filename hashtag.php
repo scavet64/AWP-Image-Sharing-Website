@@ -53,24 +53,48 @@
                 include_once("php_gens/photo_display_gen.php");
                 include_once("php_parsers/hashtag_parser.php");
                 
+                $decodeQuery = urldecode($_GET["q"]);
+                
                 //get the hashtag array from the search
-                $matches = getHashtagArray($_GET["q"])[1];
+                $matches = getHashtagArray($decodeQuery)[1];
+                
+                
+                // $sql = "SELECT * FROM photo_files 
+            	   //     JOIN photo_users USING(user_id) 
+            	   //     JOIN photos_hashtags USING(photo_id) 
+            	   //     JOIN hashtags USING(hashtag_id)
+            	   //     WHERE hashtag_value='".$matches[0]."'";
+            	        
+                
+                // for($i = 1; $i < count($matches); $i++){
+                //     $sql .= " AND photo_id in 
+                //         (SELECT photo_id FROM photo_files
+                //         JOIN photos_hashtags USING(photo_id) 
+                //         JOIN hashtags USING(hashtag_id)
+                //         WHERE hashtag_value='".$matches[$i]."')";
+                // }
+                $string="";
+                for($i = 1; $i < count($matches); $i++) {
+                $string = 
+                "AND photo_id in (SELECT photo_id FROM photo_files
+                    JOIN photos_hashtags USING(photo_id) 
+                    JOIN hashtags USING(hashtag_id)
+                    WHERE hashtag_value='".$matches[$i]."' ".$string.")";
+                }
                 
                 $sql = "SELECT * FROM photo_files 
             	        JOIN photo_users USING(user_id) 
             	        JOIN photos_hashtags USING(photo_id) 
-            	        JOIN hashtags USING(hashtag_id) 
-            	        WHERE hashtag_value =".$matches[0];
+            	        JOIN hashtags USING(hashtag_id)
+            	        WHERE hashtag_value='".$matches[0]."' ".$string;
                 
-                for($i = 1; $i < count($matches); $i++){
-                    $sql .="UNION
-                            SELECT * FROM photo_files 
-                	        JOIN photo_users USING(user_id) 
-                	        JOIN photos_hashtags USING(photo_id) 
-                	        JOIN hashtags USING(hashtag_id) 
-                	        WHERE hashtag_value =".$matches[$i];
+                
+                $sql .=" ORDER BY uploaddate DESC LIMIT 10";
+                
+                $hashTagsInThisSearch = "";
+                for($i = 0; $i < count($matches); $i++) {
+                    $hashTagsInThisSearch .= " #".$matches[$i];
                 }
-                $sql .="ORDER BY uploaddate DESC LIMIT 10";
                 
                 $containerString = "";
             	        
@@ -80,7 +104,7 @@
 		            //show no hashtags found!
 		            $containerString = '<p class="noHashTags">No photos with that hashtag!</p>';
 		        } else {
-		            $containerString = '<p>Photos with #'.$tag.'</p>';
+		            $containerString = '<p class="hashTagsInSearch">Photos with'.$hashTagsInThisSearch.'</p>';
                 	while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
                         $containerString .= generatePhotoDisplay($row, $db_conx, $log_username);
                     }
