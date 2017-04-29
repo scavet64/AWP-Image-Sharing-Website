@@ -34,7 +34,7 @@ CREATE TABLE `photo_files` (
   `caption` varchar(128),      # check the caption for special chars
   `filelocation` varchar(256) NOT NULL, # probably want to remove special chars
   PRIMARY KEY  (`photo_id`),
-  CONSTRAINT user_id
+  CONSTRAINT photo_user_id
   FOREIGN KEY (`user_id`) REFERENCES photo_users(`user_id`)
 ) engine=innodb;
 
@@ -52,10 +52,10 @@ CREATE TABLE `photo_comments` (
   `comment_text` varchar(128),
   `comment_date` timestamp,
   PRIMARY KEY  (`comment_id`),
-  CONSTRAINT user_id
+  CONSTRAINT comment_user_id
   FOREIGN KEY (`user_id`) REFERENCES photo_users(`user_id`)
   ON DELETE CASCADE,
-  CONSTRAINT photo_id
+  CONSTRAINT comment_photo_id
   FOREIGN KEY (`photo_id`) REFERENCES photo_files(`photo_id`)
   ON DELETE CASCADE
 ) engine=innodb;
@@ -71,10 +71,10 @@ CREATE TABLE `photos_hashtags` (
   `photo_id` int(8) NOT NULL,
   `hashtag_id` int(8) NOT NULL,
   PRIMARY KEY  (`connection_id`),
-  CONSTRAINT photo_id
+  CONSTRAINT bridge_photo_id
   FOREIGN KEY (`photo_id`) REFERENCES photo_files(`photo_id`)
   ON DELETE CASCADE,
-  CONSTRAINT hashtag_id
+  CONSTRAINT bridge_hashtag_id
   FOREIGN KEY (`hashtag_id`) REFERENCES hashtags(`hashtag_id`)
   ON DELETE CASCADE
 ) engine=innodb;
