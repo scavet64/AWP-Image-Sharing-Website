@@ -7,21 +7,21 @@ if($user_ok == true){
 }
 ?><?php
 // AJAX CALLS THIS LOGIN CODE TO EXECUTE
-if(isset($_POST["e"])){
+if(isset($_POST["u"])){
 	// CONNECT TO THE DATABASE
 	include_once("php_includes/db_connects.php");
 	// GATHER THE POSTED DATA INTO LOCAL VARIABLES AND SANITIZE
-	$e = mysqli_real_escape_string($db_conx, $_POST['e']);
+	$u = mysqli_real_escape_string($db_conx, $_POST['u']);
 	$p = sha1($_POST['p']);
 	// GET USER IP ADDRESS
     $ip = preg_replace('#[^0-9.]#', '', getenv('REMOTE_ADDR'));
 	// FORM DATA ERROR HANDLING
-	if($e == "" || $p == ""){
+	if($u == "" || $p == ""){
 		echo "login_failed";
         exit();
 	} else {
 	// END FORM DATA ERROR HANDLING
-		$sql = "SELECT user_id, username, password FROM photo_users WHERE email='$e' AND activated='1' LIMIT 1";
+		$sql = "SELECT user_id, username, password FROM photo_users WHERE username='$u' AND activated='1' LIMIT 1";
         $query = mysqli_query($db_conx, $sql);
         $row = mysqli_fetch_row($query);
 		$db_id = $row[0];
@@ -86,10 +86,10 @@ if(isset($_POST["e"])){
   <div class="formWrapper loginFormWrapper">
 	  <form id="loginform" onsubmit="return false;">
 	  	<h3>Log In</h3>
-	    <div>Email Address:</div>
-	    <input class="form-control inputForm" type="text" id="email" onfocus="emptyElement('status')" maxlength="88">
+	    <div>username:</div>
+	    <input class="form-control inputForm" type="text" id="username" onfocus="emptyElement('status')" maxlength="32">
 	    <div>Password:</div>
-	    <input class="form-control inputForm" type="password" id="password" onfocus="emptyElement('status')" maxlength="100">
+	    <input class="form-control inputForm" type="password" id="password" onfocus="emptyElement('status')" maxlength="32">
 	    <div><a id="forgotPassButton" href="forgot_pass.php">Forgot Your Password?</a></div>
 	    <button class="formButton" id="loginbtn" onclick="loginForm()">Submit</button> 
 	    <p id="status"></p>

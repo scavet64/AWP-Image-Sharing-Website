@@ -80,10 +80,12 @@ function signup(){
 				} else {
 					window.scrollTo(0,0);
 					_("signupform").innerHTML = "logging you in...";
-					var success = login(e,p1);
-					if(!success){
+					var success = login(u,p1);
+					if(success == undefined){
+						_("signupform").innerHTML = "Welcome! :^)";
+					} else{
 						_("signupform").innerHTML = "Trouble loggin you in. :^(";
-					};
+					}
 					
 					/***If we want to go back to the email verification method***/
 					//_("signupform").innerHTML = "OK "+u+", check your email inbox 
@@ -92,7 +94,7 @@ function signup(){
 					//anything on the site until you successfully activate your account.";
 				}
 	        }
-        }
+        };
         ajax.send("u="+u+"&e="+e+"&p="+p1);
 	}
 }
@@ -104,15 +106,15 @@ function openTerms(){
 /*************Login****************/
 
 function loginForm(){
-	var e = _("email").value;
+	var u = _("username").value;
 	var p = _("password").value;
 	
-	if(e == "" || p == ""){
+	if(u == "" || p == ""){
 		_("status").innerHTML = "Fill out all of the form data";
 	} else {
 	    _("loginbtn").style.display = "none";
 		_("status").innerHTML = 'please wait ...';
-		var success = login(e,p);
+		var success = login(u,p);
 		if(!success){
 			_("status").innerHTML = "Login unsuccessful, please try again.";
 			_("loginbtn").style.display = "block";
@@ -120,8 +122,8 @@ function loginForm(){
 	}
 }
 
-function login(e,p){
-	if(e == "" || p == ""){
+function login(u,p){
+	if(u == "" || p == ""){
 		return false;
 	} else {
 		var ajax = ajaxObj("POST", "login.php");
@@ -135,7 +137,7 @@ function login(e,p){
 	        }
         }
         
-        ajax.send("e="+e+"&p="+p);
+        ajax.send("u="+u+"&p="+p);
 	}
 }
 
