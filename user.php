@@ -20,6 +20,14 @@ if($numrows < 1){
 	echo "That user does not exist or is not yet activated, press back";
     exit();	
 }
+// Fetch the user row from the query above
+while ($row = mysqli_fetch_array($user_query, MYSQLI_ASSOC)) {
+	$profile_id = $row["user_id"];
+	$signup = $row["joindate"];
+	$lastlogin = $row["lastlogin"];
+	$joindate = strftime("%b %d, %Y", strtotime($signup));
+	$lastsession = strftime("%b %d, %Y", strtotime($lastlogin));
+}
 // Check to see if the viewer is the account owner
 // using the variables in the check_login_status.php
 $isOwner = "no";
@@ -30,14 +38,12 @@ if($u == $log_username && $user_ok == true){
 			onclick="deleteUser(\''.$log_username.'\')" type="button">
 		<i class="glyphicon glyphicon-trash"></i>
 	</button>';
-}
-// Fetch the user row from the query above
-while ($row = mysqli_fetch_array($user_query, MYSQLI_ASSOC)) {
-	$profile_id = $row["user_id"];
-	$signup = $row["joindate"];
-	$lastlogin = $row["lastlogin"];
-	$joindate = strftime("%b %d, %Y", strtotime($signup));
-	$lastsession = strftime("%b %d, %Y", strtotime($lastlogin));
+} else if ($u !== $log_username && $user_ok === true){
+	$deleteButton = 
+	'<button class="btn btn-md btn-danger deleteCommentButton" 
+			onclick="blockUser(\''.$profile_id.'\')" type="button">
+		<i class="glyphicon glyphicon-trash"></i>Block User
+	</button>';
 }
 ?>
 <!DOCTYPE html>

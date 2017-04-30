@@ -54,8 +54,9 @@ if(isset($_POST["comment_id"])){
 		        WHERE comment_id = '$comment_id'";
 		$query = mysqli_query($db_conx, $sql); 
 		$newPhotoId = mysqli_insert_id($db_conx);
+	} else {
+		echo "error";
 	}
-	echo "error";
 	exit();
 }
 ?>
@@ -71,6 +72,27 @@ if(isset($_POST["comment"]) && isset($_POST["photo_id"])){
 		$comment = mysqli_real_escape_string($db_conx, $_POST['comment']);
 		$photo_id = preg_replace('#[^a-z0-9]#i', '', $_POST['photo_id']);
 		
+		//get user who owns this photo
+		$sql = "SELECT user_id FROM photo_files 
+	        	JOIN photo_users USING(user_id)
+	        	WHERE photo_id='".$photo_id."'";
+		$query = mysqli_query($db_conx, $sql);
+		$row = mysqli_fetch_array($query, MYSQLI_ASSOC);
+		$photoOwnerID = $row["user_id"];
+		
+		
+		//check and see if he is on the block list
+		$sql = "SELECT blocker FROM blockedusers 
+	        	WHERE blockee='".$log_id."'
+	        	AND blocker='".$photoOwnerID."'";
+		$query = mysqli_query($db_conx, $sql);
+		$numrows = mysqli_num_rows($query);
+		if($numrows >= 1){
+			//blocked user from commenting
+			echo "error: This user blocked you :^)";
+		    exit();	
+		}
+		
 		//insert comment into database
 		$sql = "insert into photo_comments (user_id, photo_id, comment_text, comment_date) 
 		        VALUES ('$log_id', '$photo_id', '$comment', now())";
@@ -83,7 +105,7 @@ if(isset($_POST["comment"]) && isset($_POST["photo_id"])){
 		echo genComment($log_username, $comment, 'Just Now', True, $newComment_id);
 	} else {
 		//user not logged in.
-		echo "error";
+		echo "error: You cannot post a comment if you are not logged in.";
 	}
 }
 ?>

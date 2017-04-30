@@ -80,7 +80,8 @@ function signup(){
 				} else {
 					window.scrollTo(0,0);
 					_("signupform").innerHTML = "logging you in...";
-					if(!login(e,p1)){
+					var success = login(e,p1);
+					if(!success){
 						_("signupform").innerHTML = "Trouble loggin you in. :^(";
 					};
 					
@@ -111,7 +112,8 @@ function loginForm(){
 	} else {
 	    _("loginbtn").style.display = "none";
 		_("status").innerHTML = 'please wait ...';
-		if(login(e, p) === false){
+		var success = login(e,p);
+		if(!success){
 			_("status").innerHTML = "Login unsuccessful, please try again.";
 			_("loginbtn").style.display = "block";
 		}
@@ -125,7 +127,7 @@ function login(e,p){
 		var ajax = ajaxObj("POST", "login.php");
         ajax.onreadystatechange = function() {
 	        if(ajaxReturn(ajax) == true) {
-	            if(ajax.responseText == "login_failed"){
+	            if(ajax.responseText.trim() === "login_failed"){
 					return false;
 				} else {
 					window.location = "user.php?u="+ajax.responseText;
@@ -152,12 +154,13 @@ function postComment(id){
     },
     function(data, status){
     	if(status === "success"){
-    		if(data.trim() !== "error"){
+    		if(!data.trim().includes("error")){
     			_('commentsForPhoto'+id).innerHTML += data;
     			_(idToFind).value = '';
     		} else {
-    			//user wasnt logged in, display an error somewhere
-    			alert("You cannot post a comment if you arent logged in");
+    			//display an error somewhere
+    			var str = data.trim().replace("error:", '');
+    			alert(str);
     		}
 
     	} else {
@@ -211,6 +214,28 @@ function deleteUser(username){
 	    });
 	}
 }
+
+function blockUser(user_id){
+	
+	//for now use this ugly box
+	if(confirm("Press OK do confirm your deletion. This action cannot be reversed.")){
+		
+		$.post("block_user.php",
+	    {
+	        user_id: user_id,
+	    },
+	    function(data, status){
+	    	if(status === "success"){
+	    		window.location = "index.php";
+	    		//_(idToFind).remove();
+	    	} else {
+	    		//something went wrong. Display something at some point
+	    	}
+	    });
+	}
+}
+
+/*************HashTags****************/
 
 function SearchHashtags(){
 	var search = _("searchBar").value.replace(/#/g,'%23');

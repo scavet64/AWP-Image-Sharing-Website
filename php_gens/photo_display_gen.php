@@ -48,10 +48,6 @@ function generatePhotoDisplay($row, $db_conx, $log_username){
 <?php
 function genComments($id, $db_conx, $photoOwner, $log_username) {
     $commentArrayOfDivs = "";
-    // $sqlComment = "SELECT * FROM photo_comments
-    //         JOIN photo_users USING(user_id)
-	   //     WHERE photo_id = ".$id."
-	   //     ORDER BY comment_date DESC LIMIT 10";
 	        
 	$sqlComment = "SELECT comment_text, username, comment_date, comment_id FROM photo_comments
                JOIN photo_users USING(user_id)
