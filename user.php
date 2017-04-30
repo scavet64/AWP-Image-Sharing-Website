@@ -64,6 +64,5 @@ while ($row = mysqli_fetch_array($user_query, MYSQLI_ASSOC)) {
 		<?php echo $deleteButton?>
 	</div>
 </div>
-<?php include_once("template_pageBottom.php"); ?>
 </body>
 </html>

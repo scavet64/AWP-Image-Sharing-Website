@@ -177,6 +177,5 @@ window.onload = addEvents; */
 		</form>
 	</div>
 </div>
-<?php include_once("template_pageBottom.php"); ?>
 </body>
 </html>

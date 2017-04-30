@@ -62,7 +62,6 @@ include_once("php_includes/check_login_status.php");
     </div>
   
 </div>
-<?php include_once("template_pageBottom.php"); ?>
 <script>
 // Get the modal
 var modal = document.getElementById('uploadModal');

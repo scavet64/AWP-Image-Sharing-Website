@@ -139,6 +139,5 @@ function forgotpass(){
     <p id="status"></p>
   </form>
 </div>
-<?php include_once("template_pageBottom.php"); ?>
 </body>
 </html>

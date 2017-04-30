@@ -98,6 +98,5 @@ if(isset($_POST["e"])){
   </div>
   <!-- LOGIN FORM -->
 </div>
-<?php include_once("template_pageBottom.php"); ?>
 </body>
 </html>
