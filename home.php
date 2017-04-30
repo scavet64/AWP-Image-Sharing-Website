@@ -37,7 +37,7 @@ include_once("php_includes/check_login_status.php");
     Browse <input type="file" style="display: none;">
 </label>
       <label><b>Description</b></label>
-      <input type="text" placeholder="Enter Description" name="description" required>
+      <input type="text" placeholder="Enter Description" name="description" required maxlength="255">
 
       
     </div>

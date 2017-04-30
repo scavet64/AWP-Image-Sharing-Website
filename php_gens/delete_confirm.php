@@ -1,3 +1,6 @@
+<!--This is test code and is not implemented into the website.
+    I am keeping it around as I would like to get it working at some point.
+
 <!-- Modal Dialog -->
 <div class="modal fade" id="confirmDelete" role="dialog" aria-labelledby="confirmDeleteLabel" aria-hidden="true" style="z-index:10000;">
   <div class="modal-dialog">

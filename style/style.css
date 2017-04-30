@@ -289,10 +289,12 @@ body { margin: 0px; font-family: Tahoma, Geneva, sans-serif; font-size: 14px; }
 }
 .descriptionText{
 	margin-top: 0px;
+	word-wrap: break-word;
 }
 .comment{
 	margin-top: 5px;
 	margin-bottom: 5px;
+	word-wrap: break-word;
 }
 .linkToUser{
 	margin-top: 10px;
