@@ -36,13 +36,13 @@ if($u == $log_username && $user_ok == true){
 	$deleteButton = 
 	'<button class="btn btn-xs btn-danger deleteCommentButton" 
 			onclick="deleteUser(\''.$log_username.'\')" type="button">
-		<i class="glyphicon glyphicon-trash"></i>
+		<i class="glyphicon glyphicon-trash"></i> Delete Account
 	</button>';
 } else if ($u !== $log_username && $user_ok === true){
 	$deleteButton = 
 	'<button class="btn btn-md btn-danger deleteCommentButton" 
 			onclick="blockUser(\''.$profile_id.'\')" type="button">
-		<i class="glyphicon glyphicon-trash"></i>Block User
+		<i class="glyphicon glyphicon-trash"></i> Block User
 	</button>';
 }
 ?>
