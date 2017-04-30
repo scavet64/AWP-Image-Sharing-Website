@@ -1,5 +1,13 @@
 <?php
 include_once("php_includes/check_login_status.php");
+
+if($user_ok){
+    $uploadButton = '
+    <div class="photoUploadButtonWrapper">
+        <button class="uploadbutton mainUploadButton" id="uploadButton" onclick="toggleElement(\'uploadModal\')" style="float:none; width:100%">Upload</button>
+    </div>';
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -17,9 +25,8 @@ include_once("php_includes/check_login_status.php");
 <body class="mainBody">
 <?php include_once("template_pageTop.php"); ?>
 <div id="pageMiddle">
-    <div class="photoUploadButtonWrapper">
-        <button class="uploadbutton mainUploadButton" id="uploadButton" onclick="toggleElement('uploadModal')" style="float:none; width:100%">Upload</button>
-    </div>
+
+<?php echo $uploadButton ?>
 
 <!-- The Upload Modal -->
 <div id="uploadModal" class="modal">
