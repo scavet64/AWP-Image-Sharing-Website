@@ -179,9 +179,12 @@ function deleteComment(id){
 	    },
 	    function(data, status){
 	    	if(status === "success"){
-	    		_(idToFind).remove();
+	    		if(data.trim() !== "error"){
+	    			_(idToFind).remove();
+	    		}
 	    	} else {
 	    		//something went wrong
+	    		alert("Problem deleting message");
 	    	}
 	    });
 	}

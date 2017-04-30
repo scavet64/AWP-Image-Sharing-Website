@@ -55,6 +55,7 @@ if(isset($_POST["comment_id"])){
 		$query = mysqli_query($db_conx, $sql); 
 		$newPhotoId = mysqli_insert_id($db_conx);
 	}
+	echo "error";
 	exit();
 }
 ?>
