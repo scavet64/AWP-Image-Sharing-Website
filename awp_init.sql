@@ -15,7 +15,7 @@ CREATE TABLE `photo_users` (
   `user_id` int(8) NOT NULL auto_increment,
   `joindate` DATETIME NOT NULL,
   `lastlogin` DATETIME NOT NULL,
-  `username` varchar(50) NOT NULL,
+  `username` varchar(32) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `ip` varchar(255) NOT NULL,
@@ -31,7 +31,7 @@ CREATE TABLE `photo_files` (
   `user_id` int(8) NOT NULL,
   `uploaddate` timestamp NOT NULL,
   `uploadname` varchar(128) NOT NULL,
-  `caption` varchar(128),      # check the caption for special chars
+  `caption` varchar(250),      # check the caption for special chars
   `filelocation` varchar(256) NOT NULL, # probably want to remove special chars
   PRIMARY KEY  (`photo_id`),
   CONSTRAINT photo_user_id
@@ -50,7 +50,7 @@ CREATE TABLE `photo_comments` (
   `comment_id` int(8) NOT NULL auto_increment,
   `user_id` int(8),
   `photo_id` int(8),
-  `comment_text` varchar(128),
+  `comment_text` varchar(250),
   `comment_date` timestamp,
   PRIMARY KEY  (`comment_id`),
   CONSTRAINT comment_user_id

@@ -15,8 +15,8 @@ if(isset($_POST["usernamecheck"])){
 	$sql = "SELECT user_id FROM photo_users WHERE username='$username' LIMIT 1";
     $query = mysqli_query($db_conx, $sql); 
     $uname_check = mysqli_num_rows($query); //either 0 or 1. 1 = failed because we found a record with that username
-    if (strlen($username) < 3 || strlen($username) > 16) {
-	    echo '<strong style="color:#F00;">3 - 16 characters please</strong>';
+    if (strlen($username) < 3 || strlen($username) > 32) {
+	    echo '<strong style="color:#F00;">3 - 32 characters please</strong>';
 	    exit();
     }
 	if (is_numeric($username[0])) {
@@ -152,14 +152,14 @@ window.onload = addEvents; */
 		<form name="signupform" id="signupform" onsubmit="return false;">
 			<h3>Sign Up</h3>
 			<div>Username: </div>
-			<input id="username" class="form-control inputForm" type="text" onblur="checkusername()" onkeyup="restrict('username')" maxlength="16">
+			<input id="username" class="form-control inputForm" type="text" onblur="checkusername()" onkeyup="restrict('username')" maxlength="32">
 			<span id="unamestatus" class="unamestatus"></span>
 			<div>Email Address:</div>
-			<input id="email" class="form-control form-control-warning inputForm" type="text" onfocus="emptyElement('status')" onkeyup="restrict('email')" maxlength="88">
+			<input id="email" class="form-control inputForm" type="text" onfocus="emptyElement('status')" onkeyup="restrict('email')" maxlength="255">
 			<div>Create Password:</div>
-			<input id="pass1" class="form-control inputForm" type="password" onfocus="emptyElement('status')" maxlength="16">
+			<input id="pass1" class="form-control inputForm" type="password" onfocus="emptyElement('status')" maxlength="32">
 			<div>Confirm Password:</div>
-			<input id="pass2" class="form-control inputForm" type="password" onfocus="emptyElement('status')" maxlength="16">
+			<input id="pass2" class="form-control inputForm" type="password" onfocus="emptyElement('status')" maxlength="32">
 			<div>
 				<a href="#" onclick="return false" onmousedown="openTerms()">
 					View the Terms Of Use
