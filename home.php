@@ -23,8 +23,6 @@ include_once("php_includes/check_login_status.php");
 
 <!-- The Upload Modal -->
 <div id="uploadModal" class="modal">
-  <span onclick="toggleElement('uploadModal')" 
-    class="close" title="Close Modal">&times;</span>
 
   <!-- Modal Content -->
   <form class="modal-content animate uploadForm" enctype="multipart/form-data" method="post" action="php_parsers/photo_system.php">
@@ -33,7 +31,7 @@ include_once("php_includes/check_login_status.php");
         <label class="uploadHeading"><b>Please select the photo to upload</b></label>
         <!--<input type="file" name="photo" required>-->
       
-            <div class="input-group">
+            <div class="input-group" style="margin:15px;">
                 <label class="input-group-btn">
                     <span class="btn btn-primary">
                         Browse&hellip; <input type="file" name="photo" style="display: none;" multiple>
@@ -41,8 +39,8 @@ include_once("php_includes/check_login_status.php");
                 </label>
                 <input type="text" class="form-control" readonly>
             </div>
-        <label><b>Description</b></label>
-        <input type="text" placeholder="Enter Description" name="description" required maxlength="255">
+        <label class="uploadHeading"><b>Enter a brief description</b></label>
+        <input type="text" class="form-control" placeholder="Enter Description" name="description" required maxlength="255">
     </div>
 
     <div class="modalContainer" style="background-color:#f1f1f1">

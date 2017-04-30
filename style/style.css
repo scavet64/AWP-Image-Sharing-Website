@@ -142,7 +142,7 @@ body { margin: 0px; font-family: Tahoma, Geneva, sans-serif; font-size: 14px; }
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    /*z-index: 1; */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
@@ -166,7 +166,6 @@ body { margin: 0px; font-family: Tahoma, Geneva, sans-serif; font-size: 14px; }
 /* The Close Button */
 .close {
     /* Position it in the top right corner outside of the modal */
-    position: absolute;
     right: 25px;
     top: 0; 
     color: #000;

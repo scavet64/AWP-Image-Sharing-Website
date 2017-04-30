@@ -58,6 +58,7 @@ if($u == $log_username && $user_ok == true){
 <link rel="stylesheet" href="style/style.css">
 <script src="js/main.js"></script>
 <script src="js/ajax.js"></script>
+<script src="js/bootbox.min.js"></script>
 </head>
 <body class="mainBody">
 <?php include_once("template_pageTop.php"); ?>

@@ -218,6 +218,15 @@ function deleteUser(username){
 function blockUser(user_id){
 	
 	//for now use this ugly box
+	bootbox.confirm("Are you sure?", function(result){ 
+		if(result){
+			alert("yes!");
+		} else {
+			alert("no!");
+		}
+		
+		
+	})
 	if(confirm("Press OK do confirm your deletion. This action cannot be reversed.")){
 		
 		$.post("block_user.php",
@@ -260,6 +269,7 @@ function loadImages(offset){
 	ajax.send("");
 }
 
+/*************Uploading****************/
 
 $(function() {
 
