@@ -6,6 +6,7 @@ body { margin: 0px; font-family: Tahoma, Geneva, sans-serif; font-size: 14px; }
 	height: 60px;
 	font-family: 'Roboto Condensed', sans-serif;
 	padding: 10px;
+	min-width: 800px;
 }
 #pageTop > #pageTopWrap {
 	width: 100%;
@@ -31,6 +32,7 @@ body { margin: 0px; font-family: Tahoma, Geneva, sans-serif; font-size: 14px; }
 }
 #pageTop > #pageTopWrap > #pageTopRest > #menu1 > div {
 	text-align:right;
+	margin-top: 10px;
 }
 #pageTop > #pageTopWrap > #pageTopRest > #menu1 > div > a {
 	color: white;
@@ -72,6 +74,12 @@ body { margin: 0px; font-family: Tahoma, Geneva, sans-serif; font-size: 14px; }
   	padding: 1rem;
   	margin-top: 30px;
   	
+}
+.searchHolder{
+	margin: auto;
+    width: 500px;
+    height: 40px;
+    min-width: 500px;
 }
 .mainBody {
 	background-color: #1C2541;

@@ -42,7 +42,7 @@ if($user_ok == true) {
           <!--<button class="formButton searchButton" onclick="SearchHashtags()">Search</button>-->
         </div>
       </div>
-      <div class="searchHolder" style="margin: auto;width: 500px;height: 40px;">
+      <div class="searchHolder" style="margin: auto;width: 500px;height: 40px;min-width: 500px;">
           <input id="searchBar" type="text" class="form-control searchBar" name="search"/>
           <button class="formButton searchButton" onclick="SearchHashtags()">Search</button>
       </div>
