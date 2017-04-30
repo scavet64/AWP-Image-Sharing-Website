@@ -69,7 +69,8 @@ if(isset($_POST["comment"]) && isset($_POST["photo_id"])){
 	include_once("php_parsers/hashtag_parser.php");
 	
 	if($user_ok){
-		$comment = mysqli_real_escape_string($db_conx, $_POST['comment']);
+		$comment = strip_tags($_POST['comment']);
+		$comment = mysqli_real_escape_string($db_conx, $comment);
 		$photo_id = preg_replace('#[^a-z0-9]#i', '', $_POST['photo_id']);
 		
 		//get user who owns this photo

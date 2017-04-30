@@ -37,7 +37,7 @@ function generatePhotoDisplay($row, $db_conx, $log_username){
                 '.genComments($id, $db_conx, $photoOwner, $log_username).'
             </div>
             <div>
-                <input class="form-control commentBox" id="inputOnPhoto'.$id.'" type="text" name="firstname">
+                <input class="form-control commentBox" id="inputOnPhoto'.$id.'" type="text" maxlength="250">
                 <button class="formButton commentButton" type="button" onclick="postComment('.$id.')" class="">Comment</button>
             </div>
         </div>';
