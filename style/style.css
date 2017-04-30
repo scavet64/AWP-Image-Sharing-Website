@@ -5,12 +5,12 @@ body { margin: 0px; font-family: Tahoma, Geneva, sans-serif; font-size: 14px; }
 	background-color: #3A506B;
 	height: 60px;
 	font-family: 'Roboto Condensed', sans-serif;
-	padding: 20px;
+	padding: 10px;
 }
 #pageTop > #pageTopWrap {
-	width: 1000px;
+	width: 100%;
 	margin: 0px auto;
-	height: 60px;
+	height: 40px;
 }
 #pageTop > #pageTopWrap > #pageTopLogo {
 	float: left;
@@ -18,16 +18,16 @@ body { margin: 0px; font-family: Tahoma, Geneva, sans-serif; font-size: 14px; }
 	width: 108px;
 }
 #logoimage {
-	height: 60px;
-	width: 60px;
+	height: 40px;
+	width: 40px;
 }
 #pageTop > #pageTopWrap > #pageTopRest {
 	float: left;
-	height: 60px;
-	width: 892px;
+	height: 40px;
+	width: 100%;
 }
 #pageTop > #pageTopWrap > #pageTopRest > #menu1 {
-	height: 44px;
+	height: 40px;
 }
 #pageTop > #pageTopWrap > #pageTopRest > #menu1 > div {
 	text-align:right;
@@ -40,7 +40,7 @@ body { margin: 0px; font-family: Tahoma, Geneva, sans-serif; font-size: 14px; }
 	color: #6FFFE9;
 }
 #pageTop > #pageTopWrap > #pageTopRest > #menu2 {
-	height: 44px;
+	height: 40px;
 }
 #pageTop > #pageTopWrap > #pageTopRest > #menu2 > div {
 }
@@ -56,7 +56,6 @@ body { margin: 0px; font-family: Tahoma, Geneva, sans-serif; font-size: 14px; }
 }
 /* PAGE MIDDLE */
 #pageMiddle{
-	width: 1000px;
 	margin: 0px auto;
 	background: #1C2541;
 }
@@ -216,6 +215,10 @@ body { margin: 0px; font-family: Tahoma, Geneva, sans-serif; font-size: 14px; }
     float: left;
 	border-radius: 5px;
 }
+.mainUploadButton{
+	max-width: 500px;
+	margin-top: 15px;
+}
 
 /* Add a hover effect for buttons */
 .uploadbutton:hover {
@@ -318,7 +321,7 @@ body { margin: 0px; font-family: Tahoma, Geneva, sans-serif; font-size: 14px; }
 	margin-left: 3px;
 }
 .photoUploadButtonWrapper{
-	width: 50%;
+	width: 500px;
 	margin: auto;
 	margin-bottom: 15px;
 }

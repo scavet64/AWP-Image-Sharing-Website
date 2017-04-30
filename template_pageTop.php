@@ -22,25 +22,29 @@ if($user_ok == true) {
 
 <div id="pageTop">
   <div id="pageTopWrap">
-    <div id="pageTopLogo">
-      <a href="index.php">
-        <img src="images/logo.jpg" style="width:60px;height:60px;margin-top: -20px;" alt="logo" title="AWP">
-      </a>
-    </div>
+    <!--<div id="pageTopLogo">-->
+    <!--  <a href="index.php">-->
+    <!--    <img src="images/logo.jpg" style="width:40px;height:40px;margin-top: 0px;" alt="logo" title="AWP">-->
+    <!--  </a>-->
+    <!--</div>-->
     <div id="pageTopRest">
       <div id="menu1" class="TopMenu" style="float: right">
         <div>
           <?php echo $loginLink; ?>
         </div>
       </div>
-      <div id="menu2">
+      <div id="menu2" style="float:left">
         <div>
           <a href="index.php">
-            <img id="home" style="width:30px;height:30px;margin-top:-5px;" src="images/home-icon.png" alt="home" title="Home">
+            <img id="home" style="width:35px;height:35px;margin-top:0px;" src="images/home-icon.png" alt="home" title="Home">
           </a>
+          <!--<input id="searchBar" type="text" class="form-control searchBar" name="search"/>-->
+          <!--<button class="formButton searchButton" onclick="SearchHashtags()">Search</button>-->
+        </div>
+      </div>
+      <div class="searchHolder" style="margin: auto;width: 500px;height: 40px;">
           <input id="searchBar" type="text" class="form-control searchBar" name="search"/>
           <button class="formButton searchButton" onclick="SearchHashtags()">Search</button>
-        </div>
       </div>
     </div>
   </div>

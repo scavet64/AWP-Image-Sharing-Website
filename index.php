@@ -18,7 +18,7 @@ include_once("php_includes/check_login_status.php");
 <?php include_once("template_pageTop.php"); ?>
 <div id="pageMiddle">
     <div class="photoUploadButtonWrapper">
-        <button class="uploadbutton" id="uploadButton" onclick="toggleElement('uploadModal')" style="float:none; width:100%">Upload</button>
+        <button class="uploadbutton mainUploadButton" id="uploadButton" onclick="toggleElement('uploadModal')" style="float:none; width:100%">Upload</button>
     </div>
 
 <!-- The Upload Modal -->
