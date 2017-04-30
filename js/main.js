@@ -206,7 +206,7 @@ function deleteUser(username){
 	    },
 	    function(data, status){
 	    	if(status === "success"){
-	    		window.location = "index.php";
+	    		window.location = "home.php";
 	    		//_(idToFind).remove();
 	    	} else {
 	    		//something went wrong. Display something at some point
@@ -226,7 +226,7 @@ function blockUser(user_id){
 	    },
 	    function(data, status){
 	    	if(status === "success"){
-	    		window.location = "index.php";
+	    		window.location = "home.php";
 	    		//_(idToFind).remove();
 	    	} else {
 	    		//something went wrong. Display something at some point
@@ -259,15 +259,3 @@ function loadImages(offset){
 	}
 	ajax.send("");
 }
-
-// $('button[name="remove_levels"]').on('click', function(e) {
-//   var $form = $(this).closest('form');
-//   e.preventDefault();
-//   $('#confirm').modal({
-//       backdrop: 'static',
-//       keyboard: false
-//     })
-//     .one('click', '#delete', function(e) {
-//       $form.trigger('submit');
-//     });
-// });

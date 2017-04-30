@@ -18,7 +18,7 @@ if(isset($_POST["username"])){
 	    $sql = "DELETE FROM photo_users WHERE username='$username'";
         $query = mysqli_query($db_conx, $sql); 
 	    
-	    header("location: index.php");
+	    header("location: home.php");
 	} else {
 	    header("location: message.php?msg=Cant_Delete_Another_User_You_Silly");
 	}
