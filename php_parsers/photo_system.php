@@ -79,7 +79,7 @@ if (isset($_FILES["photo"]["name"]) && $_FILES["photo"]["tmp_name"] != ""){
 	}
 	
 	mysqli_close($db_conx);
-	header("location: ../index.php");
+	header("location: ../home.php");
 	exit();
 }
 ?>

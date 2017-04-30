@@ -58,21 +58,6 @@
                 //get the hashtag array from the search
                 $matches = getHashtagArray($decodeQuery)[1];
                 
-                
-                // $sql = "SELECT * FROM photo_files 
-            	   //     JOIN photo_users USING(user_id) 
-            	   //     JOIN photos_hashtags USING(photo_id) 
-            	   //     JOIN hashtags USING(hashtag_id)
-            	   //     WHERE hashtag_value='".$matches[0]."'";
-            	        
-                
-                // for($i = 1; $i < count($matches); $i++){
-                //     $sql .= " AND photo_id in 
-                //         (SELECT photo_id FROM photo_files
-                //         JOIN photos_hashtags USING(photo_id) 
-                //         JOIN hashtags USING(hashtag_id)
-                //         WHERE hashtag_value='".$matches[$i]."')";
-                // }
                 $string="";
                 for($i = 1; $i < count($matches); $i++) {
                 $string = 

@@ -13,7 +13,7 @@ if(isset($_POST["user_id"])){
 		$query = mysqli_query($db_conx, $sql); 
 		$newBlocked_id = mysqli_insert_id($db_conx);
 	    
-	    //header("location: index.php");
+	    //header("location: home.php");
 	    echo("Successfully blocked.");
 	} else {
 	    echo("error");

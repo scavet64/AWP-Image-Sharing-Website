@@ -23,7 +23,7 @@ if($user_ok == true) {
 <div id="pageTop">
   <div id="pageTopWrap">
     <!--<div id="pageTopLogo">-->
-    <!--  <a href="index.php">-->
+    <!--  <a href="home.php">-->
     <!--    <img src="images/logo.jpg" style="width:40px;height:40px;margin-top: 0px;" alt="logo" title="AWP">-->
     <!--  </a>-->
     <!--</div>-->
@@ -35,7 +35,7 @@ if($user_ok == true) {
       </div>
       <div id="menu2" style="float:left">
         <div>
-          <a href="index.php">
+          <a href="home.php">
             <img id="home" style="width:35px;height:35px;margin-top:0px;" src="images/home-icon.png" alt="home" title="Home">
           </a>
           <!--<input id="searchBar" type="text" class="form-control searchBar" name="search"/>-->
