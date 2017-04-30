@@ -30,16 +30,19 @@ include_once("php_includes/check_login_status.php");
   <form class="modal-content animate uploadForm" enctype="multipart/form-data" method="post" action="php_parsers/photo_system.php">
 
     <div class="modalContainer">
-      <label><b>Please select the photo to upload</b></label>
-      <input type="file" name="photo" required>
-
-        <label class="btn btn-default btn-file">
-    Browse <input type="file" style="display: none;">
-</label>
-      <label><b>Description</b></label>
-      <input type="text" placeholder="Enter Description" name="description" required maxlength="255">
-
+        <label class="uploadHeading"><b>Please select the photo to upload</b></label>
+        <!--<input type="file" name="photo" required>-->
       
+            <div class="input-group">
+                <label class="input-group-btn">
+                    <span class="btn btn-primary">
+                        Browse&hellip; <input type="file" name="photo" style="display: none;" multiple>
+                    </span>
+                </label>
+                <input type="text" class="form-control" readonly>
+            </div>
+        <label><b>Description</b></label>
+        <input type="text" placeholder="Enter Description" name="description" required maxlength="255">
     </div>
 
     <div class="modalContainer" style="background-color:#f1f1f1">
