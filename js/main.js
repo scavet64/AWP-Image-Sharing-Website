@@ -115,7 +115,7 @@ function loginForm(){
 	    _("loginbtn").style.display = "none";
 		_("status").innerHTML = 'please wait ...';
 		var success = login(u,p);
-		if(!success){
+		if(success === false){
 			_("status").innerHTML = "Login unsuccessful, please try again.";
 			_("loginbtn").style.display = "block";
 		}
