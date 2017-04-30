@@ -3,36 +3,38 @@
 <head>
 <meta charset="UTF-8">
 <title>AWP: Image sharing website</title>
-<link rel="icon" href="favicon.ico" type="image/x-icon">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="js/main.js"></script>
-<script src="js/ajax.js"></script>
-<link rel="stylesheet" href="style/style.css">
 </head>
-<body class="mainBody">
-    <div style="padding:20px;">
-        <h2>Synopsis</h2>
-        <p>
-            This project was created by Vincent Scavetta as the final project for the
-            Spring 2017 Advance Web Programming course at Rowan University. The project goals
-            were to build an image sharing website that users could create an account, upload
-            images, and leave comments for others to see. These requirements were implemented
-            using PHP, MySQL, HTML, JavaScript, and CSS.
-        </p>
-    </div>
-    <div style="padding:20px;">
-        <h2>Limitations</h2>
-        <p>
-            
-        </p>
-    </div>
-    <div style="padding:20px;">
-        <h2>Assumptions</h2>
-        <p>
-            
-        </p>
+<body style="padding:20px;">
+    <div>
+        <div>
+            <h2>Synopsis</h2>
+            <p>
+                This project was created by Vincent Scavetta as the final project for the
+                Spring 2017 Advance Web Programming course at Rowan University. The project goals
+                were to build an image sharing website that users could create an account, upload
+                images, and leave comments for others to see. These requirements were implemented
+                using PHP, MySQL, HTML, JavaScript, and CSS.
+                </br></br>
+                Home.php is the main page that the user would be brought to if they were visiting
+                for the first time. It was renamed to Home.php in order to make grading and 
+                exploration of the files easier. In a production enviroment, this file would be my
+                index.php.
+            </p>
+        </div>
+        <div>
+            <h2>Limitations/Assumptions</h2>
+            <p>
+                <li>Accounts are pre-activated without needing to click the emailed link.
+                        This was done to make testing/grading easier, however in a production enviroment
+                        accounts would be defaulted to inactive.</li>
+                <li>Users can view the website from their mobile device, however they cannot upload anything.</li>
+                <li>There is no way to change your current password without using the password recovery link.</li>
+                <li>Users cannot unblock another user.</li>
+                <li>Only 10 comments can be shown at a single time on a photo.</li>
+                </br>
+                These issues will be fixed in a future release.
+            </p>
+        </div>
     </div>
 </body>
 
