@@ -382,3 +382,9 @@ body { margin: 0px; font-family: Tahoma, Geneva, sans-serif; font-size: 14px; }
 	margin:auto;
 	text-align: center;
 }
+.passChanged{
+	color:green;
+}
+.passChangedFailed{
+	color:red;
+}

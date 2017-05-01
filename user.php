@@ -34,17 +34,22 @@ $isOwner = "no";
 if($u == $log_username && $user_ok == true){
 	$isOwner = "yes";
 	$deleteButton = 
-	'<button class="btn btn-xs btn-danger deleteCommentButton" 
+	'<button class="btn btn-md btn-danger " 
 			onclick="deleteUser(\''.$log_username.'\')" type="button">
 		<i class="glyphicon glyphicon-trash"></i> Delete Account
 	</button>';
 } else if ($u !== $log_username && $user_ok === true){
 	$deleteButton = 
-	'<button class="btn btn-md btn-danger deleteCommentButton" 
+	'<button class="btn btn-md btn-danger " 
 			onclick="blockUser(\''.$profile_id.'\')" type="button">
 		<i class="glyphicon glyphicon-trash"></i> Block User
 	</button>';
 }
+$changePasswordButton = '
+	<button class="btn btn-md btn-primary " 
+			onclick="changePassword(\''.$profile_id.'\')" type="button" style="margin-top:10px;">
+		<i class="glyphicon glyphicon-pencil"></i> Change Password 
+	</button>';
 ?>
 <!DOCTYPE html>
 <html>
@@ -69,6 +74,13 @@ if($u == $log_username && $user_ok == true){
 		<p>Join Date: <?php echo $joindate; ?></p>
 		<p>Last Session: <?php echo $lastsession; ?></p>
 		<?php echo $deleteButton?>
+		</br>
+		<?php echo $changePasswordButton?>
+		</br>
+		</br>
+		<p id="changedSuccessfully" class="passChanged" style="display:none;">Changed Password Successfully!</p>
+		<p id="changedFailed" class="passChangedFailed" style="display:none;">Failed to change password: </p>
+	</button>
 	</div>
 </div>
 </body>

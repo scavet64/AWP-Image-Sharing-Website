@@ -272,6 +272,39 @@ function blockUser(user_id){
 	}
 }
 
+function changePassword(username){
+	bootbox.confirm("<form id='infos' method='post' action='change_pass.php'>\
+		<label class='uploadHeading' style='margin:10px;' >Enter your new password twice</label>\
+	    <input id='changepass1' type='password' name='password1' class='form-control' /><br/>\
+	    <input id='changepass2' type='password' name='password2' class='form-control' />\
+	    </form>", function(result) {
+	        if(result){
+	        	
+	        	if(_('changepass1').value === _('changepass2').value){
+	        		
+		        	$.post("change_pass.php",
+				    {
+				        user_id: username,
+				        password1: _('changepass1').value,
+				        password2: _('changepass2').value,
+				    },
+				    function(data, status){
+				    	if(status === "success" && data.trim() === "success"){
+				    		toggleElement('changedSuccessfully');
+				    	} else {
+				    		//something went wrong.
+				    		toggleElement('changedFailed');
+				    		_('changedFailed').innerHTML += data.trim();
+				    	}
+				    });
+	        	} else {
+	        		toggleElement('changedFailed');
+	        		_('changedFailed').innerHTML += "Passwords did not match!";
+	        	}
+	        }
+	});
+}
+
 /*************HashTags****************/
 
 function SearchHashtags(){
