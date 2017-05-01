@@ -9,7 +9,7 @@ include_once("php_parsers/hashtag_parser.php");
 <?php
 function generatePhotoDisplay($row, $db_conx, $log_username){
     	$id = $row["photo_id"];
-		$filename = $row["filename"];
+		$filename = $row["uploadname"];
 		$description = $row["caption"];
 		$uploaddate = $row["uploaddate"];
 		$filelocation = $row["filelocation"];
