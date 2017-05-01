@@ -1,7 +1,10 @@
 <?php
 function convertDate($dateToConvert, $TimezoneToSet){
     $original_datetime = $dateToConvert;
-    $original_timezone = new DateTimeZone('UTC');
+    
+    //Since the MySQL server on elvis uses EDT as its default timezone, this is wrong.
+    //$original_timezone = new DateTimeZone('UTC');
+    $original_timezone = new DateTimeZone('EDT');
     
     // Instantiate the DateTime object, setting it's date, time and time zone.
     $datetime = new DateTime($original_datetime, $original_timezone);
