@@ -1,6 +1,6 @@
 <?php
 include_once("php_includes/check_login_status.php");
-
+$uploadButton = "";
 if($user_ok){
     $uploadButton = '
     <div class="photoUploadButtonWrapper">
