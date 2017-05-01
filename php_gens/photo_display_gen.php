@@ -15,8 +15,7 @@ function generatePhotoDisplay($row, $db_conx, $log_username){
 		$filelocation = $row["filelocation"];
 		$photoOwner = $row["username"];
 		
-		//this line is not needed for elvis
-        //$displayDate = convertDate($uploaddate, 'America/New_York');
+        $displayDate = convertDate($uploaddate, 'America/New_York');
         
         $description = parseTextForUsername($description);
         $description = parseTextForHashtag($description);
