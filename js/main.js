@@ -246,30 +246,48 @@ function deleteUser(username){
 function blockUser(user_id){
 	
 	//for now use this ugly box
-	bootbox.confirm("Are you sure?", function(result){ 
+	bootbox.confirm("Press OK to block this user", function(result){ 
 		if(result){
-			alert("yes!");
+			$.post("block_user.php",
+		    {
+		        user_id: user_id,
+		    },
+		    function(data, status){
+		    	if(status === "success" && data.trim() === "Success"){
+		    		//reload the page for now
+		    		location.reload();
+		    	} else {
+		    		//something went wrong. Display something at some point
+		    	}
+		    });
 		} else {
-			alert("no!");
+			//do nothing
 		}
-		
-		
 	})
-	if(confirm("Press OK do confirm your deletion. This action cannot be reversed.")){
-		
-		$.post("block_user.php",
-	    {
-	        user_id: user_id,
-	    },
-	    function(data, status){
-	    	if(status === "success"){
-	    		window.location = "home.php";
-	    		//_(idToFind).remove();
-	    	} else {
-	    		//something went wrong. Display something at some point
-	    	}
-	    });
-	}
+}
+
+function unblockUser(blockee, blocker){
+	
+	//for now use this ugly box
+	bootbox.confirm("Press OK to unblock this user", function(result){ 
+		if(result){
+			$.post("block_user.php",
+		    {
+		        blockee: blockee,
+		        blocker: blocker,
+		    },
+		    function(data, status){
+		    	if(status === "success" && data.trim() === "Success"){
+		    		//reload the page for now
+		    		location.reload();
+		    	} else {
+		    		//something went wrong. Display something at some point
+		    	}
+		    });
+		} else {
+			//do nothing
+		}
+	})
 }
 
 function changePassword(username){

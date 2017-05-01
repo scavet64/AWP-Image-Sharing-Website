@@ -30,6 +30,9 @@ while ($row = mysqli_fetch_array($user_query, MYSQLI_ASSOC)) {
 }
 // Check to see if the viewer is the account owner
 // using the variables in the check_login_status.php
+
+include_once("block_user.php");
+
 $isOwner = "no";
 if($u == $log_username && $user_ok == true){
 	$isOwner = "yes";
@@ -38,18 +41,27 @@ if($u == $log_username && $user_ok == true){
 			onclick="deleteUser(\''.$log_username.'\')" type="button">
 		<i class="glyphicon glyphicon-trash"></i> Delete Account
 	</button>';
-} else if ($u !== $log_username && $user_ok === true){
-	$deleteButton = 
-	'<button class="btn btn-md btn-danger " 
-			onclick="blockUser(\''.$profile_id.'\')" type="button">
-		<i class="glyphicon glyphicon-trash"></i> Block User
-	</button>';
-}
-$changePasswordButton = '
+	$changePasswordButton = '
 	<button class="btn btn-md btn-primary " 
 			onclick="changePassword(\''.$profile_id.'\')" type="button" style="margin-top:10px;">
 		<i class="glyphicon glyphicon-pencil"></i> Change Password 
 	</button>';
+} else if ($u !== $log_username && $user_ok === true){
+	if(isUserBlocked($profile_id, $log_id, $db_conx)){
+	$deleteButton = 
+	'<button class="btn btn-md btn-success " 
+			onclick="unblockUser(\''.$profile_id.'\',\''.$log_id.'\')" type="button">
+		<i class="glyphicon glyphicon-ok"></i> Unblock User
+	</button>';
+	} else {
+	$deleteButton = 
+	'<button class="btn btn-md btn-danger " 
+			onclick="blockUser(\''.$profile_id.'\')" type="button">
+		<i class="glyphicon glyphicon-remove"></i> Block User
+	</button>';
+	}
+
+}
 ?>
 <!DOCTYPE html>
 <html>
