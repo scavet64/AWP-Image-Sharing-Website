@@ -141,6 +141,32 @@ function login(u,p){
 	}
 }
 
+function forgotpass(){
+	var u = _("username").value;
+	if(u == ""){
+		_("status").innerHTML = "Type in your username";
+	} else {
+		_("forgotpassbtn").style.display = "none";
+		_("status").innerHTML = 'please wait ...';
+		var ajax = ajaxObj("POST", "forgot_pass.php");
+        ajax.onreadystatechange = function() {
+	        if(ajaxReturn(ajax) == true) {
+				var response = ajax.responseText;
+				if(response == "success"){
+					_("forgotpassform").innerHTML = '<h3>Step 2. Check your email inbox in a few minutes</h3><p>You can close this window or tab if you like.</p>';
+				} else if (response == "no_exist"){
+					_("status").innerHTML = "Sorry that username is not in our system";
+				} else if(response == "email_send_failed"){
+					_("status").innerHTML = "Mail function failed to execute";
+				} else {
+					_("status").innerHTML = "An unknown error occurred";
+				}
+	        }
+        }
+        ajax.send("u="+u);
+	}
+}
+
 /*************Comments****************/
 
 function postComment(id){

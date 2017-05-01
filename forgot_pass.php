@@ -8,7 +8,7 @@ if($user_ok == true){
 ?><?php
 // AJAX CALLS THIS CODE TO EXECUTE
 if(isset($_POST["u"])){
-	$u = preg_replace('#[^a-z0-9]#i', '', $_GET['u']);
+	$u = preg_replace('#[^a-z0-9]#i', '', $_POST['u']);
 	$sql = "SELECT user_id, email FROM photo_users WHERE username='$u' AND activated='1' LIMIT 1";
 	$query = mysqli_query($db_conx, $sql);
 	$numrows = mysqli_num_rows($query);
@@ -103,7 +103,7 @@ if(isset($_GET['u']) && isset($_GET['p'])){
 function forgotpass(){
 	var u = _("username").value;
 	if(u == ""){
-		_("status").innerHTML = "Type in your email address";
+		_("status").innerHTML = "Type in your username";
 	} else {
 		_("forgotpassbtn").style.display = "none";
 		_("status").innerHTML = 'please wait ...';
