@@ -7,15 +7,15 @@ if($user_ok == true){
 }
 ?><?php
 // AJAX CALLS THIS CODE TO EXECUTE
-if(isset($_POST["e"])){
-	$e = mysqli_real_escape_string($db_conx, $_POST['e']);
-	$sql = "SELECT user_id, username FROM photo_users WHERE email='$e' AND activated='1' LIMIT 1";
+if(isset($_POST["u"])){
+	$u = preg_replace('#[^a-z0-9]#i', '', $_GET['u']);
+	$sql = "SELECT user_id, email FROM photo_users WHERE username='$u' AND activated='1' LIMIT 1";
 	$query = mysqli_query($db_conx, $sql);
 	$numrows = mysqli_num_rows($query);
 	if($numrows > 0){
 		while($row = mysqli_fetch_array($query, MYSQLI_ASSOC)){
 			$id = $row["user_id"];
-			$u = $row["username"];
+			$e = $row["email"];
 		}
 		$emailcut = substr($e, 0, 4);
 		$randNum = rand(10000,99999);
@@ -92,7 +92,7 @@ if(isset($_GET['u']) && isset($_GET['p'])){
 <head>
 <meta charset="UTF-8">
 <title>Forgot Password</title>
-<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+<link rel="icon" href="favicon.ico" type="image/x-icon">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -101,8 +101,8 @@ if(isset($_GET['u']) && isset($_GET['p'])){
 <script src="js/ajax.js"></script>
 <script>
 function forgotpass(){
-	var e = _("email").value;
-	if(e == ""){
+	var u = _("username").value;
+	if(u == ""){
 		_("status").innerHTML = "Type in your email address";
 	} else {
 		_("forgotpassbtn").style.display = "none";
@@ -114,7 +114,7 @@ function forgotpass(){
 				if(response == "success"){
 					_("forgotpassform").innerHTML = '<h3>Step 2. Check your email inbox in a few minutes</h3><p>You can close this window or tab if you like.</p>';
 				} else if (response == "no_exist"){
-					_("status").innerHTML = "Sorry that email address is not in our system";
+					_("status").innerHTML = "Sorry that username is not in our system";
 				} else if(response == "email_send_failed"){
 					_("status").innerHTML = "Mail function failed to execute";
 				} else {
@@ -122,7 +122,7 @@ function forgotpass(){
 				}
 	        }
         }
-        ajax.send("e="+e);
+        ajax.send("u="+u);
 	}
 }
 </script>
@@ -133,8 +133,8 @@ function forgotpass(){
 <div class="formWrapper loginFormWrapper">
   <h3 style="margin-bottom: 30px;">Generate a temporary login password</h3>
   <form id="forgotpassform" onsubmit="return false;">
-    <div>Step 1: Enter Your Email Address</div>
-    <input id="email" class="form-control inputForm" type="text" onfocus="_('status').innerHTML='';" maxlength="255">
+    <div>Step 1: Enter Your username</div>
+    <input id="username" class="form-control inputForm" type="text" onfocus="_('status').innerHTML='';" maxlength="255">
     <button id="forgotpassbtn" class="formButton" onclick="forgotpass()">Generate Temporary Log In Password</button> 
     <p id="status"></p>
   </form>
