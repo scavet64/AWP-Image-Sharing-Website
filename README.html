@@ -39,17 +39,55 @@
                 <li>Users can change their password by viewing their profile page and clicking "change password".</li>
                 <li>Users can block/unblock other users. A blocked user cannot comment on any photos uploaded by the blocker.</li>
                 <li>Users can view this website from their phones as well as upload photos* <i>tested on an iPhone 7, YMMV</i></li>
+                <li>Home page has "Infinite" scroll. It will load 10 images at a time until there are no more photos.</li>
             </p>
         </div>
         <div>
             <h2>Limitations/Assumptions</h2>
             <p>
-                <li>Accounts are pre-activated without needing to click the emailed link.
-                        This was done to make testing/grading easier, however in a production enviroment
-                        accounts would be defaulted to inactive.</li>
-                <li>Only 10 comments can be shown at a single time on a photo.</li>
-                <li>The users profile page is bare at the moment. There are plans to show recent images
-                that user has uploaded.</li>
+                <li>
+                    <strong>Accounts are pre-activated without needing to click the emailed link.</strong>
+                    <ul>
+                        <li>
+                            This was done to make testing/grading easier, however in a production enviroment
+                            accounts would be defaulted to inactive.
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Only 10 comments can be shown at a single time on a photo.</strong>
+                    <ul>
+                        <li>
+                            I would add a smaller button to the comment box that says "Load more comments".
+                        </li>
+                        <li>
+                            This button would work similar to how the infinite scroll works by using an offset.
+                        </li>
+                        <li>
+                            This button would only be inserted into the HTML if there were more comments to view.
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>The users profile page is bare at the moment.</strong>
+                    <ul>
+                        <li>
+                            There are plans to show recent images that user has uploaded.
+                        </li>
+                        <li>
+                            This would be done by using a simple sql query that only selects photos uploaded by
+                            that user. The list of photos would then be handed off to the photo generation script.
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Admin accounts are not implemented.</strong>
+                    <ul>
+                        <li>I would implement this by adding another column to the users table that indicates user level. (int)</li>
+                        <li>If the user had the highest level, buttons for deletion would exist on every possible item such as comments, user profiles, and photos.</li>
+                        <li>These buttons already are dynamically added to the HTML depending on who is viewing the page so this would take just the addition of another conditional.</li>
+                    </ul>
+                </li>
                 </br>
                 These issues will be fixed in a future release.
             </p>
