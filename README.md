@@ -26,15 +26,15 @@ using PHP, MySQL, HTML, JavaScript, and CSS.
 ## Known Limitations
 
 - Accounts are pre-activated without needing to click the emailed link.
- - This was done to make testing/grading easier, however in a production enviroment accounts would be defaulted to inactive.
+  - This was done to make testing/grading easier, however in a production enviroment accounts would be defaulted to inactive.
 - Only 10 comments can be shown at a single time on a photo.
- - I would add a smaller button to the comment box that says "Load more comments".
- - This button would work similar to how the infinite scroll works by using an offset.
- - This button would only be inserted into the HTML if there were more comments to view.
+  - I would add a smaller button to the comment box that says "Load more comments".
+  - This button would work similar to how the infinite scroll works by using an offset.
+  - This button would only be inserted into the HTML if there were more comments to view.
 - The users profile page is bare at the moment.
- - There are plans to show recent images that user has uploaded.
- - This would be done by using a simple sql query that only selects photos uploaded by that user. The list of photos would then be handed off to the photo generation script.
+  - There are plans to show recent images that user has uploaded.
+  - This would be done by using a simple sql query that only selects photos uploaded by that user. The list of photos would then be handed off to the photo generation script.
 - Admin accounts are not implemented.
- - I would implement this by adding another column to the users table that indicates user level. (int)
- - If the user had the highest level, buttons for deletion would exist on every possible item such as comments, user profiles, and photos.
- - These buttons already are dynamically added to the HTML depending on who is viewing the page so this would take just the addition of another conditional.
+  - I would implement this by adding another column to the users table that indicates user level. (int)
+  - If the user had the highest level, buttons for deletion would exist on every possible item such as comments, user profiles, and photos.
+  - These buttons already are dynamically added to the HTML depending on who is viewing the page so this would take just the addition of another conditional.
