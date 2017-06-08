@@ -32,6 +32,10 @@ if (isset($_FILES["photo"]["name"]) && $_FILES["photo"]["tmp_name"] != ""){
 		header("location: ../message.php?msg=ERROR: An unknown error occurred");
 		exit();
 	}
+    
+    if(!file_exists("../uploads")){
+        mkdir("../uploads", 0755);
+    }
 
 	$moveResult = move_uploaded_file($fileTmpLoc, "../uploads/$db_file_name");
 	if ($moveResult != true) {

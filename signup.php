@@ -84,14 +84,14 @@ if(isset($_POST["u"])){
 // 			mkdir("user/$u", 0755);
 // 		}
 		// Email the user their activation link
-		$websiteURL = "http://elvis.rowan.edu/~scavet64/awp/awp/";
+		$websiteURL = "scavettapps.com/awp/";
 		$mySiteName = "Super Cool Image Site";
 		$UrlEncodedEmail = urlencode($e);
 
 		$activationURL = $websiteURL.'activation.php?id='.$uid.'&u='.$u.'&e='.$UrlEncodedEmail.'&p='.$p_hash;
 		
 		$to = "$e";							 
-		$from = "scavet64@students.rowan.edu";
+		$from = "noreply@scavettapps.com";
 		$subject = $mySiteName.' Account Activation';
 		$message = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>'.$mySiteName.' Message</title></head><body style="margin:0px; font-family:Tahoma, 
 		Geneva, sans-serif;"><div style="padding:10px; background:#333; font-size:24px; color:#CCC;"><a href="'.$websiteURL.'">
