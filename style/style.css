@@ -2,73 +2,389 @@ body { margin: 0px; font-family: Tahoma, Geneva, sans-serif; font-size: 14px; }
 /* PAGE TOP */
 #pageTop {
 	/*background:url(headerSliver.png) repeat-x;*/
-	background-color: #666;
-	height: 90px;
+	background-color: #3A506B;
+	height: 60px;
+	font-family: 'Roboto Condensed', sans-serif;
+	padding: 10px;
+	min-width: 800px;
 }
 #pageTop > #pageTopWrap {
-	width: 1000px;
+	width: 100%;
 	margin: 0px auto;
-	height: 90px;
+	height: 40px;
 }
 #pageTop > #pageTopWrap > #pageTopLogo {
 	float: left;
-	height: 90px;
+	height: 60px;
 	width: 108px;
 }
 #logoimage {
-	height: 60px;
-	width: 60px;
-	margin-top: -60px;
+	height: 40px;
+	width: 40px;
 }
 #pageTop > #pageTopWrap > #pageTopRest {
 	float: left;
-	height: 90px;
-	width: 892px;
+	height: 40px;
+	width: 100%;
 }
 #pageTop > #pageTopWrap > #pageTopRest > #menu1 {
-	height: 44px;
+	height: 40px;
 }
 #pageTop > #pageTopWrap > #pageTopRest > #menu1 > div {
-	margin-top: 8px;
-	padding: 4px;
 	text-align:right;
+	margin-top: 10px;
 }
 #pageTop > #pageTopWrap > #pageTopRest > #menu1 > div > a {
-	color: #CCC;
+	color: white;
 	text-decoration: none;
 }
 #pageTop > #pageTopWrap > #pageTopRest > #menu1 > div > a:hover {
-	color: #C0E73D;
+	color: #6FFFE9;
 }
 #pageTop > #pageTopWrap > #pageTopRest > #menu2 {
-	height: 44px;
+	height: 40px;
 }
 #pageTop > #pageTopWrap > #pageTopRest > #menu2 > div {
-	margin-top: 2px;
-	padding: 4px;
 }
 #pageTop > #pageTopWrap > #pageTopRest > #menu2 > div > a {
 	display: block;
 	float: left;
-	color:#CCC;
+	color: white;
 	text-decoration: none;
 	margin: 0px 16px;
 }
 #pageTop > #pageTopWrap > #pageTopRest > #menu2 > div > a:hover {
-	color: #C0E73D;
+	color: #6FFFE9;
 }
 /* PAGE MIDDLE */
 #pageMiddle{
-	width: 1000px;
 	margin: 0px auto;
-	height: 900px;
-	background-color: gray;
+	background: #1C2541;
 }
 /* PAGE BOTTOM */
 #pageBottom{
-	background: #666;
-	padding: 24px;
+	position: sticky;
+	background: #3A506B;
 	font-size: 12px;
 	color: #CCC;
 	text-align: center;
+	right: 0;
+  	bottom: 0;
+  	left: 0;
+  	padding: 1rem;
+  	margin-top: 30px;
+  	
+}
+.searchHolder{
+	margin: auto;
+    width: 500px;
+    height: 40px;
+    min-width: 500px;
+}
+.mainBody {
+	background-color: #1C2541;
+	color:white;
+	font-family: 'Roboto Condensed', sans-serif;
+}
+.inputForm {
+	background-color: white;
+	width: 250px;
+}
+.formWrapper {
+	margin: auto;
+    width: 260px;
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+.signupFormWrapper {
+	top: 10%;
+}
+.loginFormWrapper {
+	top: 30%;
+}
+.formButton {
+    font-size: 15px;
+    padding: 5px;
+    float: left;
+    margin-right: 10px;
+    margin-top: 15px;
+    border-radius: 5px;
+    border-color: transparent;
+    background-color: #5BC0BE;
+}
+.terms {
+	background: #3A506B;
+	padding: 12px;
+	border-radius: 5px;
+	color: white;
+}
+.unamestatus {
+	float: right;
+	margin-right: 10px;
+}
+.userWrapper {
+	margin: 10%;
+	background-color: #3A506B;
+	padding: 15px;
+	padding-left: 20px;
+	border-radius: 15px;
+}
+
+
+
+
+
+
+
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    /*z-index: 1; */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 5px auto; /* 15% from the top and centered */
+    border: 1px solid #888;
+    width: 25%; /* Could be more or less, depending on screen size */
+    min-width: 300px;
+    color: black;
+}
+
+/* The Close Button */
+.close {
+    /* Position it in the top right corner outside of the modal */
+    right: 25px;
+    top: 0; 
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+/* Close button on hover */
+.close:hover,
+.close:focus {
+    color: red;
+    cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)} 
+    to {-webkit-transform: scale(1)}
+}
+
+@keyframes animatezoom {
+    from {transform: scale(0)} 
+    to {transform: scale(1)}
+}
+
+/* Bordered form */
+.uploadForm {
+    border: 3px solid #f1f1f1;
+}
+.uploadHeading{
+	display: block;
+	text-align:center;
+}
+
+/* Full-width inputs */
+/*input[type=text], input[type=password] {*/
+/*    width: 100%;*/
+/*    padding: 12px 20px;*/
+/*    margin: 8px 0;*/
+/*    display: inline-block;*/
+/*    border: 1px solid #ccc;*/
+/*    box-sizing: border-box;*/
+/*}*/
+
+/* Set a style for all buttons */
+.uploadbutton {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    border: none;
+    cursor: pointer;
+    width: 50%;
+    float: left;
+	border-radius: 5px;
+}
+.mainUploadButton{
+	max-width: 500px;
+	margin-top: 15px;
+}
+
+/* Add a hover effect for buttons */
+.uploadbutton:hover {
+    opacity: 0.8;
+}
+
+/* Extra style for the cancel button (red) */
+.cancelbtn {
+    background-color: #f44336;
+}
+
+.sbsLeftButton{
+	border-top-right-radius: 0px;
+	border-bottom-right-radius: 0px;
+}
+.sbsRightButton{
+	border-top-left-radius: 0px;
+	border-bottom-left-radius: 0px;
+}
+
+/* Center the avatar image inside this container */
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+}
+
+/* Add padding to containers */
+.modalContainer {
+    padding: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+/*@media screen and (max-width: 300px) {*/
+/*    span.psw {*/
+/*        display: block;*/
+/*        float: none;*/
+/*    }*/
+/*    .cancelbtn {*/
+/*        width: 100%;*/
+/*    }*/
+/*}*/
+
+.displayImages{
+	max-height: 500px;
+	max-width: 500px;
+
+	box-shadow: 0px 0px 10px #000;
+	border-color: white;
+	border-radius: 5px;
+	margin: auto;
+	display:block;
+}
+.photoContainer{
+	padding: 15px;
+	background-color: #3A506B;
+	border-radius: 5px;
+	width:525px;
+	margin: auto;
+	margin-top: 15px;
+}
+.descriptionText{
+	margin-top: 0px;
+	word-wrap: break-word;
+}
+.comment{
+	margin-top: 5px;
+	margin-bottom: 5px;
+	word-wrap: break-word;
+}
+.linkToUser{
+	margin-top: 10px;
+	color:white;
+	text-decoration: none;
+}
+.linkToUser:hover{
+	color:#6FFFE9;
+	text-decoration: none;
+}
+.deletedUser{
+	margin-top: 10px;
+	color:white;
+	text-decoration: none;
+}
+.deletedUser:hover{
+	color:white;
+	text-decoration: none;
+}
+.hashtag{
+	color:#5BC0BE;
+	text-decoration: none;
+}
+.hashtag:hover{
+	color:#6FFFE9;
+	text-decoration: none;
+}
+.pictureOwner{
+	float: left;
+	margin-right: 3px;
+}
+.uploadDate{
+	float: right;
+	margin-left: 3px;
+}
+.photoUploadButtonWrapper{
+	width: 500px;
+	margin: auto;
+	margin-bottom: 15px;
+}
+.commentButton{
+	float:none;
+	margin:auto;
+	margin-top: 10px;
+	display:block;
+}
+.commentBox{
+	float:left;
+	width:400px;
+}
+.commentDate{
+	float:right;
+}
+.imageInfo{
+	height:30px;
+	margin-top: 10px;
+}
+.commentContainer{
+	border-radius: 5px;
+	padding: 5px;
+	background: rgba(255,255,255,.25);
+	margin-bottom: 5px;
+}
+.deleteCommentButton{
+	float: right;
+    margin-top: -25px;
+    margin-right: 5px;
+    opacity: .15;
+}
+.deleteCommentButton:hover{
+    opacity: .85;
+}
+.searchBar{
+	float:left;
+	width:400px;
+}
+.searchButton{
+	margin-top: 0px;
+	margin-left: 15px;
+}
+.hashTagsInSearch{
+	margin:auto;
+	text-align: center;
+}
+.passChanged{
+	color:green;
+}
+.passChangedFailed{
+	color:red;
 }

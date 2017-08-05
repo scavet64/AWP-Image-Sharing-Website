@@ -1,1 +1,1 @@
-<div id="pageBottom">&copy;2013 Web Intersect</div>
+<footer id="pageBottom">&copy;2017 Scavettapps</footer>
